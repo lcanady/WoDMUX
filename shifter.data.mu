@@ -59,6 +59,23 @@
     terror of the dire wolf|
     elemental gift|
     song of the great beast|
+    blur of the milky eye|
+    infectious laughter|
+    liar's face|
+    open seal|
+    scent of running water|
+    blissful ignorance|
+    puple of the prey|
+    spider's song|
+    taking the forgotten|
+    gremlins|
+    liar's craft|
+    monkey trail|
+    open moon bridge|
+    pathfinder|
+    luna's blessing|
+    umbral dodge|
+    whelp body|
 
 
 &lock.gifts [v(cdo)] = 
@@ -88,45 +105,61 @@
 &values.assimilation [v(cdo)] = 5
 &values.beyond_human [v(cdo)] = 5
 &values.part_the_veil [v(cdo)] = 5
-&values.create_element[v(cdo)] = 1
-&values.primal_anger[v(cdo)] = 1
-&values.rat_head[v(cdo)] = 1
-&values.sense_wyrm[v(cdo)] = 1
-&values.shed[v(cdo)] = 1
-&values.burrow[v(cdo)] = 2
-&values.curse_of_hatred[v(cdo)] = 2
-&values.form_mastery[v(cdo)] = 2
-&values.sense_silver[v(cdo)] = 2
-&values.chameleon[v(cdo)] = 3
-&values.eyes_of_the_cat[v(cdo)] = 3
-&values.chameleon[v(cdo)] = 3
-&values.mental_speech[v(cdo)] = 3
-&values.shell[v(cdo)] = 3
-&values.gift_of_the_porcupine[v(cdo)] = 4
-&values.lash_of_rage[v(cdo)] = 4
-&values.rattler's_bite[v(cdo)] = 4
-&values.wither_limb[v(cdo)] = 4
-&values.maddness[v(cdo)] = 5
-&values.protean_form[v(cdo)] = 5
-&values.totem_gift[v(cdo)] = 5
-&values.hare's_leap[v(cdo)] = 1
-&values.heightened_senses[v(cdo)] = 1
-&values.sense_prey[v(cdo)] = 1
-&values.predator's_arsenal[v(cdo)] = 1
-&values.prey_mind[v(cdo)] = 1
-&values.axis_mundi[v(cdo)] = 2
-&values.eye_of_the_eagle[v(cdo)] = 2
-&values.name_the_spirit[v(cdo)] = 2
-&values.scent_of_sight[v(cdo)] = 2
-&values.catfeet[v(cdo)] = 3
-&values.monkey_tail[v(cdo)] = 3
-&values.sense_the_unnatural[v(cdo)] = 3
-&values.silence_the_weaver[v(cdo)] = 3
-&values.strength_of_gaia[v(cdo)] = 3
-&values.beast_life[v(cdo)] = 4
-&values.gnaw[v(cdo)] = 4
-&values.scream_of_gaia[v(cdo)] = 4
-&values.terror_of_the_dire[v(cdo)] = 4
-&values.elemental_gift[v(cdo)] = 5
-&values.song_of_the_great_beast[v(cdo)] = 5
-
+&values.create_element [v(cdo)] = 1
+&values.primal_anger [v(cdo)] = 1
+&values.rat_head [v(cdo)] = 1
+&values.sense_wyrm [v(cdo)] = 1
+&values.shed [v(cdo)] = 1
+&values.burrow [v(cdo)] = 2
+&values.curse_of_hatred [v(cdo)] = 2
+&values.form_mastery [v(cdo)] = 2
+&values.sense_silver [v(cdo)] = 2
+&values.chameleon [v(cdo)] = 3
+&values.eyes_of_the_cat [v(cdo)] = 3
+&values.chameleon [v(cdo)] = 3
+&values.mental_speech [v(cdo)] = 3
+&values.shell [v(cdo)] = 3
+&values.gift_of_the_porcupine [v(cdo)] = 4
+&values.lash_of_rage [v(cdo)] = 4
+&values.rattler's_bite [v(cdo)] = 4
+&values.wither_limb [v(cdo)] = 4
+&values.maddness [v(cdo)] = 5
+&values.protean_form [v(cdo)] = 5
+&values.totem_gift [v(cdo)] = 5
+&values.hare's_leap [v(cdo)] = 1
+&values.heightened_senses [v(cdo)] = 1
+&values.sense_prey [v(cdo)] = 1
+&values.predator's_arsenal [v(cdo)] = 1
+&values.prey_mind [v(cdo)] = 1
+&values.axis_mundi [v(cdo)] = 2
+&values.eye_of_the_eagle [v(cdo)] = 2
+&values.name_the_spirit [v(cdo)] = 2
+&values.scent_of_sight [v(cdo)] = 2
+&values.catfeet [v(cdo)] = 3
+&values.monkey_tail [v(cdo)] = 3
+&values.sense_the_unnatural [v(cdo)] = 3
+&values.silence_the_weaver [v(cdo)] = 3
+&values.strength_of_gaia [v(cdo)] = 3
+&values.beast_life [v(cdo)] = 4
+&values.gnaw [v(cdo)] = 4
+&values.scream_of_gaia [v(cdo)] = 4
+&values.terror_of_the_dire [v(cdo)] = 4
+&values.elemental_gift [v(cdo)] = 5
+&values.song_of_the_great_beast [v(cdo)] = 5
+&values.blur_of_the_milky_eye [v(cdo)] = 1
+&values.infectious_laughter [v(cdo)] = 1
+&values.liar's_face [v(cdo)] = 1
+&values.open_seal [v(cdo)] = 1
+&values.scent_of_running_water [v(cdo)] = 1
+&values.blissful_ignorance [v(cdo)] = 2
+&values.pulse_of_the_prey [v(cdo)] = 2
+&values.spider's_song [v(cdo)] = 2
+&values.taking_the_forgotten [v(cdo)] = 2
+&values.gremlins [v(cdo)] = 3
+&values.liar's_craft [v(cdo)] = 3
+&values.monkey_tail [v(cdo)] = 3
+&values.open_moon_bridge [v(cdo)] = 3
+&values.pathfinder [v(cdo)] = 3
+&values.luna's_blessing [v(cdo)] = 4
+&values.umbral_dodge [v(cdo)] = 4
+&values.whelp_body [v(cdo)] = 4
