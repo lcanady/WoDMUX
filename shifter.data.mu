@@ -94,6 +94,36 @@
     grasp the beyond|
     spirit drain|
     feral lobotomy|
+    malleable spirit|
+    ultimate argument of logic|
+    as in the beginning|
+    fangs of judgement|
+    resist pain|
+    scent of the true form|
+    truth of gaia|
+    call to duty|
+    command the gathering|
+    king of the beasts|
+    strength of purpose|
+    scent of the oathbreaker|
+    sense balance|
+    weak arm|
+    wisdom of the ancient ways|
+    roll over|
+    scent of beyond|
+    take the true form|
+    geas|
+    wall of granite|
+    break the bonds|
+    beast speech|
+    call of the wyld|
+    mindspeak|
+    perfect recall|
+    call of the wrym|
+    distractions|
+    dreamspeak|
+    howls in the night|
+    eye of the cobra|
 
 
 &lock.gifts [v(cdo)] = 
@@ -198,3 +228,33 @@
 &value.grasp_the_beyond [v(cdo)] = 4
 &value.spirit_drain [v(cdo)] = 4
 &value.feral_lobotomy [v(cdo)] = 5
+&value.malleable_spirit [v(cdo)] = 5
+&value.ultimate_argument_of_logic [v(cdo)] = 5
+&value.as_in_the_beginning [v(cdo)] = 6
+&value.fangs_of_judgement [v(cdo)] = 1
+&value.resist_pain [v(cdo)] = 1
+&value.scent_of_the_true_form [v(cdo)] = 1
+&value.truth_of_gaia [v(cdo)] = 1
+&value.call_to_duty [v(cdo)] = 2
+&value.command_the_gathering [v(cdo)] = 2
+&value.king_of_the_beasts [v(cdo)] =2
+&value.strength_of_purpose [v(cdo)] = 2
+&value.scent_of_the_oathbreaker [v(cdo)] = 3
+&value.sense_balance [v(cdo)] = 3
+&value.weak_arm [v(cdo)] = 3
+&value.wisdom_of_the_ancient_ways [v(cdo)] = 3
+&value.roll_over [v(cdo)] = 4
+&value.scent_of_beyond [v(cdo)] = 4
+&value.take_the_true_form [v(cdo)] = 4
+&value.geas [v(cdo)] = 5
+&value.wall_of_granite [v(cdo)] = 5
+&value.break_the_bonds [v(cdo)] = 6
+&value.beast_speech [v(cdo)] = 1
+&value.call_of_the_wyld [v(cdo)] = 1
+&value.mindspeak [v(cdo)] = 1
+&value.perfect_recall [v(cdo)] = 1
+&value.call_of_the_wrym [v(cdo)] = 2
+&value.distractions [v(cdo)] = 2
+&value.dreamspeak [v(cdo)] = 2
+&value.howls_in_the_night [v(cdo)] = 2
+&value.eye_of_the_cobra [v(cdo)] = 3
