@@ -282,52 +282,12 @@
     This command rolls a stat against a target number.
 
     USAGE:
-        +roll <stat> [vs <target>]
+        +roll[\perm] <stat> [vs <difficulty>]
+
 =============================================================================
 */
-&cmd.roll [v(cco)] = $[\+@]?roll\s+([^vs]+)\s*(vs\s*(.*))?:
-    [setq(8, if(%3, %3, 6))]
-    [setq(0, edit( edit(%1, +, %b+%b), -, %b-%b))]
-    [setq(1, 
-        ladd(
-            iter(
-                %q0, 
-                [if( isnum(##), ##, gettempstat(%#, ##))]
-            )
-        )
-    )]
-    [setq(2, revwords( sort(iter( lnum(%q1), die(1,10) ))))]
-    [setq(
-        3, 
-        iter(%q2, 
-            switch( 1,
-                gte(##, %q8), %ch%cg[##]%cn,
-                eq(##, 1),   %ch%cr[##]%cn,
-                %ch%cy[##]%cn
-            )
-        )    
-    )]
-    [setq(4, words(iter(%q2, if(gte(##,%q8), ##))))]
-    [setq(5, iter(%q0, if(words(setr(6,statname(%0, ##))), %ch[capstr(lcstr(last(%q6, .)))]%cn, if(isnum(##),%ch##%cn,##) )))]
-    [setq(6, words(iter(%q2, if(eq(##,1), ##))))]
-    [setq(7, sub(%q4, %q6))]
-    ;
-    @pemit %#= %chROLL>>%cn [moniker(%#)] rolls %q5 vs %ch[%q8]%cn => 
-    %(
-        [switch(1,
-            eq(%q7, 0), %ch%cy0%cn,
-            lt(%q7, 0), %ch%cr%q7%cn,
-            %ch%cg%q7%cn 
-        )]
-        
-    %) 
-        [switch(1,
-            eq(%q7,1), success,
-            gt(%q7,1), successes,
-            eq(%q7,0), successes %(%ch%cyfailure%cn%),
-            successes %(%ch%crbotch%cn%)
-        )] %(%q3%)
 
+&cmd.roll [v(cco)] = $[\+@]?roll(\/(.*))?\s+([^vs]+)\s*(vs\s*(.*))?:
+    @pemit %#= ulocal(%vb/fn.roll, %#, %3, %5, %2);
 @set [v(cco)]/cmd.roll = reg
-
 
