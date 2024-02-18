@@ -162,11 +162,30 @@
 &ufunc.header [v(cfo)] = u(#16/fn.header, %0, %1, %2)
 
 
+&filter.success [v(cfo)] = gte(%0, %1)
+
+
+/*
+=============================================================================
+===== FN.FORMAT =============================================================
+
+    This function formats three lists into columns.
+
+    %0 - The character to get the stats from.
+    %1 - The first list of stats.
+    %2 - The second list of stats.
+    %3 - The third list of stats.
+    %4 - The column headers. (optional)
+
+    returns - The formatted string.
+=============================================================================
+*/
+
 &fn.3cols [v(cfo)] = 
     [trim(
         [setq(0, sub(div(width(%#),3),3))] // the width tof the first and third cols.
         // (width - (col * 2)) - 4
-        [setq(1, sub(sub(width(%#), mul(%q0,2)), 6)   )] // the width of the second col.
+        [setq(1, sub(sub(width(%#), mul(%q0,2)), 6)  )] // the width of the second col.
         
     )]
     [if(
@@ -227,6 +246,17 @@
 
 
 
+/*
+=============================================================================
+===== FN.SHEET.BIO ==========================================================
+
+    This function returns the bio of a character.
+
+    %0 - The character to get the bio from.
+
+    returns - A string of the bio.
+=============================================================================
+*/
 
 &fn.format [v(cfo)] = 
      [ljust(
@@ -254,7 +284,18 @@
     )]
 
 
+/*
+=============================================================================
+===== FN.GETFULLSTAT ========================================================
 
+    This function returns the full stat string for a character.
+
+    %0 - The character to get the stat from.
+    %1 - The stat to get.
+
+    returns - The full stat string.
+=============================================================================
+*/
 &fn.getfullstat [v(cfo)] =
         [if( 
            or(
@@ -272,6 +313,17 @@
         )]
 
 
+/*
+=============================================================================
+===== FN.SHEET.BIO ==========================================================
+
+    This function returns the bio of a character.
+
+    %0 - The character to get the bio from.
+
+    returns - A string of the bio.
+=============================================================================
+*/
 
 &fn.sheet.bio [v(cfo)] = 
     [[header(%cr%[%b%cyBio%cn%cr%b%]%cn,,%cr=%cn)]]%r
@@ -283,7 +335,17 @@
     )]
     
 
+/*
+=============================================================================
+===== FN.SHEET.ATTRIBUTES ===================================================
 
+    This function returns the attributes of a character.
+
+    %0 - The character to get the attributes from.
+
+    returns - A string of the attributes.
+=============================================================================
+*/
 &fn.sheet.attributes [v(cfo)] = 
     [[header(%cr%[%b%cyAttributes%cn%cr%b%]%cn,,%cr=%cn)]]%r
     [u(  fn.3cols, 
@@ -293,6 +355,18 @@
         perception|intelligence|wits,
         Pyhsical|Social|Mental 
     )]
+
+/*
+=============================================================================
+===== FN.SHEET.ABILITIES ====================================================
+
+    This function returns the abilities of a character.
+
+    %0 - The character to get the abilities from.
+
+    returns - A string of the abilities.
+=============================================================================
+*/
 
 &fn.sheet.abilities [v(cfo)] = 
     [trim(
@@ -333,7 +407,17 @@
     )]
 
 
+/*
+=============================================================================
+===== FN.SHEET.ADVANTAGES ===================================================
 
+    This function returns the advantages of a character.
+
+    %0 - The character to get the advantages from.
+
+    returns - A string of the advantages.
+=============================================================================
+*/
 &fn.sheet.advantages [v(cfo)] =  
     [setq(0,
         iter(
@@ -361,6 +445,18 @@
         Backgrounds|Merits|Flaws
     )]
 
+/*
+=============================================================================
+===== FN.SHEET.POWERS.WEREWOLF ==============================================
+
+    This function returns the werewolf powers of a character.
+
+    %0 - The character to get the powers from.
+
+    returns - A string of the powers.
+=============================================================================
+*/
+
 &fn.sheet.powers.werewolf [v(cfo)] = 
     [setq(0,
         iter(
@@ -381,6 +477,17 @@
         Gifts|Rites|Renown
     )]
 
+/*
+=============================================================================
+===== FN.SHEET.POOLS ========================================================
+
+    This function returns the pools of a character.
+
+    %0 - The character to get the pools from.
+
+    returns - A string of the pools.
+=============================================================================
+*/
 
 &fn.sheet.pools [v(cfo)] =
     [setq(0,
@@ -394,6 +501,17 @@
         %0,
         ,%q0,
     )]
+
+/*
+=============================================================================
+===== FN.SHEET ==============================================================
+    This function returns the character sheet for a character.
+
+    %0 - The character to get the sheet for.
+
+    returns - A string of the character sheet.
+=============================================================================
+*/
 
 &fn.sheet [v(cfo)] = 
     header(%cr%[%b%cyCharacter Sheet for %cn[moniker(%0)]%cr%b%]%cn,,%cr=%cn)%r

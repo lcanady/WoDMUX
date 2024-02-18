@@ -87,6 +87,7 @@
 
     // see if the value is valid.
     @assert or(
+            orflags(%#, WZ),
             member(%q4, %6, |),
             not(%q4),
             not(%6),
@@ -220,7 +221,17 @@
 
 @set [v(cco)]/cmd.confirm = reg
 
+/*
+=============================================================================
+===== CMD.SHEET =============================================================
+    This command displays a character's sheet.
 
+    USAGE:
+        +sheet [<target>]
+
+    If no target is specified, the command defaults to the user.
+=============================================================================
+*/
 &cmd.sheet [v(cco)] = $[\+@]+sheet\s*(.*)?:
     [setq(0, if(%1, if( strmatch(lcstr(%1), me), %#, *%1), %#))];
     
@@ -249,3 +260,50 @@
     @pemit %# = u(%vb/fn.sheet, %q0)
 
 @set [v(cco)]/cmd.sheet = reg
+
+
+&cmd.roll [v(cco)] = $[\+@]?roll\s+(.*)\s+vs\s+(.*):
+    [setq(0, edit( edit(%1, +, %b+%b), -, %b-%b))]
+    [setq(1, 
+        ladd(
+            iter(
+                %q0, 
+                [if( isnum(##), ##, gettempstat(%#, ##))]
+            )
+        )
+    )]
+    [setq(2, revwords( sort(iter( lnum(%q1), die(1,10) ))))]
+    [setq(
+        3, 
+        iter(%q2, 
+            switch( 1,
+                gte(##, %2), %ch%cg[##]%cn,
+                eq(##, 1),   %ch%cr[##]%cn,
+                %ch%cy[##]%cn
+            )
+        )    
+    )]
+    [setq(4, words(iter(%q2, if(gte(##,%2), ##))))]
+    [setq(5, iter(%q0, if(words(setr(6,statname(%0, ##))), %ch[capstr(lcstr(last(%q6, .)))]%cn, if(isnum(##),%ch##%cn,##) )))]
+    [setq(6, words(iter(%q2, if(eq(##,1), ##))))]
+    [setq(7, sub(%q4, %q6))]
+    ;
+    @pemit %#= %chROLL>>%cn [moniker(%#)] rolls %q5 vs %ch[%2]%cn => 
+    %(
+        [switch(1,
+            eq(%q7, 0), %ch%cy0%cn,
+            lt(%q7, 0), %ch%cr%q7%cn,
+            %ch%cg%q7%cn 
+        )]
+        
+    %) 
+        [switch(1,
+            eq(%q7,1), success,
+            gt(%q7,1), successes,
+            eq(%q7,0), successes %(%ch%cyfailure%cn%),
+            successes %(%ch%crbotch%cn%)
+        )] %(%q3%)
+
+@set [v(cco)]/cmd.roll = reg
+
+

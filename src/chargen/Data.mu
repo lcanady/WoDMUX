@@ -1,19 +1,3 @@
-/*
-#############################################################################
-##### SYSTEM: STATS #########################################################
-
-    This is a system for setting and checking stats on a character.  The
-    data object acts as a home for all of the system related data.  The
-    system is designed to be as flexible as possible, allowing for a wide
-    range of stats and values.
-
-    &LIST       - A list of all the stats under a category. 
-    DEFAULT     - The default value for a stat.
-    LOCK        - A function that checks if a character has access to a stat.
-    TRIGGER     - A function that triggers when a stat is set.
-
-#############################################################################
-*/
 
 &list.bio [v(cdo)] =
     full name|
@@ -40,6 +24,8 @@
     vampire|
     mage
 
+
+&lock.template [v(cdo)] = orflags(%0, wWZ)
 
 &lock.clan [v(cdo)] = u(.is, %0, vampire)
 &lock.generation [v(cdo)] = u(.is, %0, vampire)
@@ -347,6 +333,9 @@
 ##########################################################################
 ##### UTILITY FUNCTIONS ##################################################
 */
+                    
+&.is [v(cdo)] =         gt(words(grab(getstat(%0,template),lcstr(%1),/)),0)
+&.isnt [v(cdo)] =       not(gt(words(grab(getstat(%0,template),lcstr(%1),/)),0))
+&.has [v(cdo)] =        gte(words(getstat(%0, %1)),0)
+&.not-have [v(cdo)] =   not(gte(words(getstat(%0, %1)),0))
 
-&.is [v(cdo)] =  match(getstat(%0,template), lcstr(%1))
-&.isnt [v(cdo)] =  not(match(getstat(%0,template), lcstr(%1)))
