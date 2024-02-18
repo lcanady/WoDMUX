@@ -76,6 +76,24 @@
     luna's blessing|
     umbral dodge|
     whelp body|
+    thieving talons of the magpie|
+    thousand forms|
+    firebringer|
+    mother's touch|
+    spirit snare|
+    spirit speech|
+    umbral tether|
+    battle mandala|
+    command spirit|
+    sight from the beyond|
+    exorcism|
+    pulse of the invisible|
+    umbral camouflage|
+    web walker|
+    blurring the mirror|
+    grasp the beyond|
+    spirit drain|
+    feral lobotomy|
 
 
 &lock.gifts [v(cdo)] = 
@@ -163,3 +181,20 @@
 &values.luna's_blessing [v(cdo)] = 4
 &values.umbral_dodge [v(cdo)] = 4
 &values.whelp_body [v(cdo)] = 4
+&values.thieving_talons_of_the_magpie [v(cdo)] = 5
+&values.thousand_forms [v(cdo)] = 5
+&values.firebringer [v(cdo)] = 6
+&value.mother's_touch [v(cdo)] = 1
+&value.spirit_snare [v(cdo)] = 1
+&value.spirit_speech [v(cdo)] = 1
+&value.umbral_tether [v(cdo)] = 1
+&value.battle_mandala [v(cdo)] = 2
+&value.command_spirit [v(cdo)] = 2
+&value.sight_from_the_beyond [v(cdo)] = 2
+&value.exorcism [v(cdo)] = 3
+&value.pulse_of_the_invisible [v(cdo)] = 3
+&value.umbral_camouflage [v(cdo)] = 3
+&value.blurring_the_mirror [v(cdo)] = 4
+&value.grasp_the_beyond [v(cdo)] = 4
+&value.spirit_drain [v(cdo)] = 4
+&value.feral_lobotomy [v(cdo)] = 5
