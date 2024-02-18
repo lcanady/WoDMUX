@@ -46,6 +46,16 @@
         @pemit %#= To set a template, use %ch+template <target>/<template>%cn;
     };
 
+    // If chargen is guided, do they have points set?
+    @assert and(
+        hasattr(%va/guided),
+        gt(words(lattr(%q0/points*)), 1)
+    ) = {
+        @pemit %#= You must set your points before you can set your stats.;
+        @pemit %#= Use %ch+points%cn to set your points.;
+        @pemit %#= See %ch+cghelp%cn for more information.;
+    };
+
     // check if the target has access to the stat-type.
     @assert 
         if(
@@ -101,6 +111,11 @@
     [setq(7,
         if(%q5, %q3%(%q5%), %q3)
     )];
+
+    // If guided chargen is enabled...
+    @assert not(u(%va/guided)) = {
+        @trig me = trig.guided = %#, %0,  
+    }
 
     @if strmatch(lcstr(%2), temp) = {
         // just set the temp attribute if the setter is admin.
@@ -261,8 +276,17 @@
 
 @set [v(cco)]/cmd.sheet = reg
 
+/*
+=============================================================================
+===== CMD.ROLL ==============================================================
+    This command rolls a stat against a target number.
 
-&cmd.roll [v(cco)] = $[\+@]?roll\s+(.*)\s+vs\s+(.*):
+    USAGE:
+        +roll <stat> [vs <target>]
+=============================================================================
+*/
+&cmd.roll [v(cco)] = $[\+@]?roll\s+([^vs]+)\s*(vs\s*(.*))?:
+    [setq(8, if(%3, %3, 6))]
     [setq(0, edit( edit(%1, +, %b+%b), -, %b-%b))]
     [setq(1, 
         ladd(
@@ -277,18 +301,18 @@
         3, 
         iter(%q2, 
             switch( 1,
-                gte(##, %2), %ch%cg[##]%cn,
+                gte(##, %q8), %ch%cg[##]%cn,
                 eq(##, 1),   %ch%cr[##]%cn,
                 %ch%cy[##]%cn
             )
         )    
     )]
-    [setq(4, words(iter(%q2, if(gte(##,%2), ##))))]
+    [setq(4, words(iter(%q2, if(gte(##,%q8), ##))))]
     [setq(5, iter(%q0, if(words(setr(6,statname(%0, ##))), %ch[capstr(lcstr(last(%q6, .)))]%cn, if(isnum(##),%ch##%cn,##) )))]
     [setq(6, words(iter(%q2, if(eq(##,1), ##))))]
     [setq(7, sub(%q4, %q6))]
     ;
-    @pemit %#= %chROLL>>%cn [moniker(%#)] rolls %q5 vs %ch[%2]%cn => 
+    @pemit %#= %chROLL>>%cn [moniker(%#)] rolls %q5 vs %ch[%q8]%cn => 
     %(
         [switch(1,
             eq(%q7, 0), %ch%cy0%cn,

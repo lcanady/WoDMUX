@@ -19,3 +19,12 @@
         @set [v(cco)] = safe;
     }
 
+// settings
+
+@@ Uncomment this line for guilded characger generation.
+@@ &guided [v(cdo)] = 1;
+&header_color [v(cdo)] = %cr;
+&header_border_right [v(cdo)] = %b%cr%[;
+&header_border_left [v(cdo)] = %b%cr%];
+&footer_color [v(cdo)] = %cr;
+&stat_filler [v(cdo)] = %ch%cx.%cn;
