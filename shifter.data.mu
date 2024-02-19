@@ -246,6 +246,79 @@
     elemental favor|
     doppelganger|
     signal rider|
+    tech speak|
+    chaos machanics|
+    summon net-spider|
+    eye of the hunter|
+    hidden killer|
+    wolf at the door|
+    beastmind|
+    shadows of the impergium|
+    elemental favor|
+    render down|
+    feed the pack|
+    predator's many eyes|
+    crocodile pact|
+    territory|
+    trackless waste|
+    gorge|
+    howl of death|
+    quicksand|
+    curse of lycaon|
+    gaia's vengence|
+    scabwalker curse|
+    shield of gaia|
+    aura of confidence|
+    fatal flaw|
+    seizing the edge|
+    shadow weaving|
+    whisper catching|
+    clap of thunder|
+    cold voice of reason|
+    dream of a thousand cranes|
+    fair path|
+    storm winds slash|
+    dark of night|
+    living treasure|
+    divine wind|
+    song of the earth mother|
+    direct the storm|
+    icy chill of despair|
+    paralyzing stare|
+    shadow cutting|
+    under the gun|
+    open wounds|
+    durance|
+    strength of the dominator|
+    obedience|
+    shadow pack|
+    heaven's guidence|
+    silence|
+    speed of thought|
+    visions of duat|
+    messenger's fortitude|
+    tread sebek's back|
+    adaptation|
+    great leap|
+    mark of the death-wolf|
+    black mark:
+    dam the heartflood|
+    speed beyond thought|
+    gate of the moon|
+    reach the umbra|
+    eye of the falcon|
+    falcon's grasp|
+    lambent flame|
+    empathy|
+    hand blade|
+    unity of the pack|
+    burning blade|
+    talons of the falcon|
+    warth of gaia|
+    mastery|
+    mindblock|
+    sidestep death|
+    luna's avenger|
 
 
 &lock.gifts [v(cdo)] = 
@@ -502,3 +575,75 @@
 &values.elemental_favor [v(cdo)] = 3
 &values.doppelganger [v(cdo)] = 4
 &values.signal_rider [v(cdo)]= 4
+&values.tech_speak [v(cdo)] = 4
+&values.chaos_mechanics [v(cdo)] = 5
+&values.summon_net-spider [v(cdo)] = 5
+&values.eye_of_the_hunter [v(cdo)] = 1
+&values.hidden_killer [v(cdo)] = 1
+&values.wolf_at_the_door [v(cdo)] = 1
+&values.beastmind [v(cdo)] = 2
+&values.shadows_of_the_impergium [v(cdo)] = 2
+&values.elemental_favor [v(cdo)] = 3
+&values.render_down [v(cdo)] = 3
+&values.feed_the_pack [v(cdo)] = 2
+&values.predator's_many_eyes [v(cdo)] = 3
+&values.crocodile_pact [v(cdo)] = 5
+&values.territory [v(cdo)] = 3
+&values.trackless_waste [v(cdo)] = 3
+&values.gorge [v(cdo)] = 4
+&values.howl_of_death [v(cdo)] = 4
+&values.quicksand [v(cdo)] = 4
+&values.curse_of_lycaon [v(cdo)] = 5
+&values.scabwalker_curse [v(cdo)] = 5
+&values.shield_of_gaia [v(cdo)] = 6
+&values.aura_of_confidence [v(cdo)] = 1
+&values.fatal_flaw [v(cdo)] = 1
+&values.seizing_the_edge [v(cdo)] = 1
+&values.shadow_weaving [v(cdo)] = 1
+&values.whisper_catching [v(cdo)] = 1
+&values.clap_of_thunder [v(cdo)] = 2
+&values.cold_voice_of_reason [v(cdo)]= 2
+&values.dreams_of_a_thousand_cranes [v(cdo)] = 1
+&values.fair_path [v(cdo)] = 1
+&values.storm_winds_slash [v(cdo)] = 2
+&values.dark_of_the_night [v(cdo)] = 3
+&values.living_treasure [v(cdo)] = 4
+&values.divine_winds [v(cdo)] = 5
+&values.song_of_the_earth [v(cdo)] = 2
+&values.direct_the_storm [v(cdo)] = 3
+&values.icy_chill_of_despair [v(cdo)] = 3
+&values.paralyzing_stare [v(cdo)] = 3
+&values.shadow_cutting [v(cdo)] = 3
+&values.under_the_gun [v(cdo)] = 3
+&values.open_wounds [v(cdo)] = 4
+&values.durance [v(cdo)] = 4
+&values.strength_of_the_dominator [v(cdo)] = 4
+&values.obedience [v(cdo)] = 5
+&values.shadow_pack [v(cdo)] = 5
+&values.heavens'_guidance [v(cdo)] = 1
+&values.silence [v(cdo)] = 1
+&values.speed_of_thought [v(cdo)] = 1
+&Values.visions_of_duat [v(cdo)] = 1
+&values.messenger's_fortitude [v(cdo)] = 2
+&values.tread_sebek's_back [v(cdo)] = 2
+&values.adaptation [v(cdo)] = 3
+&values.great_leap [v(cdo)] = 3
+&values.mark_of_the_Death-wolf [v(cdo)] = 3
+&values.black_mark [v(cdo)] = 4
+&values.damn_the_heartflood [v(cdo)] = 4
+&values.speed_beyond_thought [v(cdo)] = 4
+&values.gate_of_the_moon [v(cdo)] = 5
+&values.reach_the_umbra [v(cdo)] = 5
+&values.eye_of_the_falcon [v(cdo)] = 1
+&values.falcon'sgrasp [v(cdo)] = 1
+&values.lambent_flame [v(cdo)] = 1
+&values.empathy [v(cdo)] = 2
+&values.hand_blade [v(cdo)] = 2
+&values.unity_of_the_pack [v(cdo)] = 2
+&values.burning_blade [v(cdo)] = 3
+&values.talons_of_the_falcon [v(cdo)] = 3
+&values.wrath_of_gaia [v(cdo)] = 3
+&values.mastery [v(cdo)] = 4
+&values.mindblock [v(cdo)] = 4
+&values.sidestep_death [v(cdo)] = 4
+&values.luna's_avenger [v(cdo)] = 5
