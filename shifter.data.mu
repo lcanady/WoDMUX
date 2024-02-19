@@ -738,3 +738,115 @@
 &values.call_of_the_cannibal_spirit [v(cdo)] = 4
 &values.chill_of_early_frost [v(cdo)] = 4
 &values.invoke_the_spirts_of_the_storm [v(cdo)] = 5
+
+&list.rites [v(cdo)] =
+    rite of cleansing|
+    rite of contrition|
+    rite of renunciation|
+    rite of the loyal pack|
+    enchant the forest|
+    rite of the opened sky|
+    moot rite|
+    rite of the opened caern|
+    rite of the glorious past|
+    the badger's burrow|
+    rite of the opened bridge|
+    rite of the shrouded glen|
+    rite of the caern building|
+    gathering for the departed|
+    last blessing|
+    rite of the winter wolf|
+    baptism of fire|
+    rite of binding|
+    rite of growth|
+    rite of heritage|
+    rite of the cardboard palace|
+    rite of the questing stone|
+    rite of talisman dedication|
+    rite of becoming|
+    rite of spirit awakening|
+    rite of summoning|
+    rite of sacred rebirth|
+    descent into the underworld|
+    rite of the fetish|
+    rite of the totem|
+    rite of the jackdaw|
+    rite of ostracism|
+    stone of scorn|
+    voice of the jackal|
+    the hunt|
+    rite of the omega wolf|
+    satire rite|
+    the rending of the veil|
+    gaia's vengeful teeth|
+    rite of boasting|
+    rite of wounding|
+    rite of accomplishment|
+    rite of passage|
+    rite of praise|
+    rite of the winter winds|
+    rite of reawakening|
+    the great hunt|
+    the long vigil|
+    bone rhythms|
+    breath of gaia|
+    greet the moon|
+    greet the sun|
+    hunting prayer|
+    prayer for the prey|
+
+&lock.rites [v(cdo)] = u(.is, %0, garou)
+&values.rite_of_cleansing [v(cdo)] = 1
+&values.rite_of_contrition [v(cdo)] = 1
+&values.rite_of_renunciaition [v(cdo)] = 1
+&values.rite_of_the_loyal_pack [v(cdo)] = 3
+&values.enchant_the_forest [v(cdo)] = 4
+&values.rite_of_the_opened_sky [v(cdo)] = 4
+&values.moot_rite [v(cdo)] = 1
+&values.rite_of_the_opened_caern [v(cdo)] = 1
+&values.rite_of_the_glorious_past [v(cdo)] = 3
+&values.the_badger's_burrow [v(cdo)] = 4
+&values.rite_of_the_opened_bridge [v(cdo)] = 4
+&values.rite_of_the_shrouded_glen [v(cdo)] = 4
+&values.rite_of_the_caern_building [v(cdo)] = 5
+&values.gathering_for_the_departed [v(cdo)] = 1
+&values.last_blessing [v(cdo)] = 1
+&values.rite_of_the_winter_wolf [v(cdo)] = 3
+&values.baptism_of_fire [v(cdo)] = 1
+&values.rite_of_binding [v(cdo)] = 1
+&values.rite_of_growth [v(cdo)] = 1
+&values.rite_of_heritage [v(cdo)] = 1
+&values.rite_of_the_cardboard_palace [v(cdo)] = 1
+&values.rite_of_the_questing_stone [v(cdo)] = 1
+&values.rite_of_talisman_dedication [v(cdo)] = 1
+&values.rite_of_becoming [v(cdo)] = 2
+&values.rite_of_spirit_awakening [v(cdo)] = 2
+&values.rite_of_summoning [v(cdo)] = 2
+&values.rite_of_rebirth [v(cdo)] = 5
+&values.descent_into_the_underworld [v(cdo)] = 3
+&values.rite_of_the_fetish [v(cdo)] = 3
+&values.rite_of_the_totem [v(cdo)] = 3
+&values.rite_of_the_jackdaw [v(cdo)] = 1
+&values.rite_of_ostracism [v(cdo)] = 2
+&values.stone_of_scorn [v(cdo)] = 2
+&values.voice_of_the_jackal [v(cdo)] = 2
+&values.the_hunt [v(cdo)] = 3
+&values.rite_of_the_omega_wolf [v(cdo)] = 3
+&values.satire_rite [v(cdo)] = 3
+&values.the_rending_of_the_veil [v(cdo)] = 4
+&values.gaia's_vengeful_teeth [v(cdo)] = 5
+&values.rite_of_boasting [v(cdo)] = 1
+&values.rite_of_wounding [v(cdo)] = 1
+&values.rite_of_accomplishment [v(cdo)] = 2
+&values.rite_of_passage [v(cdo)] = 2
+&values.rite_of_praise [v(cdo)] = 2
+&values.rite_of_the_winter_winds [v(cdo)] = 2
+&values.rite_of_reawakening [v(cdo)] = 2
+&values.the_great_hunt [v(cdo)] = 2
+&values.the_long_vigil [v(cdo)] = 3
+&values.bone_rhythms [v(cdo)] = 1
+&values.breath_of_gaia [v(cdo)] = 1
+&values.greet_the_moon [v(cdo)] = 1
+&values.greet_the_sun [v(cdo)] = 1
+&values.hunting_prayer [v(cdo)] = 1
+&values.prayer_for_the_prey [v(cdo)] = 1
