@@ -124,6 +124,32 @@
     dreamspeak|
     howls in the night|
     eye of the cobra|
+    song of heroes|
+    song of rage|
+    song of the siren|
+    bridge walker|
+    gift of dreams|
+    shadows by the firelight|
+    fabric of the mind|
+    head games|
+    falling touch|
+    inspiration|
+    pack tactics|
+    razor claws|
+    spur claws|
+    shield of rage|
+    spirit of the fray|
+    true fear|
+    combat healing|
+    heart of fury|
+    silver claws|
+    wind claws|
+    clenched jaw|
+    full moon's light|
+    stoking fury's furnace|
+    kiss of helios|
+    strength of will|
+    unstoppable warrior|
 
 
 &lock.gifts [v(cdo)] = 
@@ -214,47 +240,73 @@
 &values.thieving_talons_of_the_magpie [v(cdo)] = 5
 &values.thousand_forms [v(cdo)] = 5
 &values.firebringer [v(cdo)] = 6
-&value.mother's_touch [v(cdo)] = 1
-&value.spirit_snare [v(cdo)] = 1
-&value.spirit_speech [v(cdo)] = 1
-&value.umbral_tether [v(cdo)] = 1
-&value.battle_mandala [v(cdo)] = 2
-&value.command_spirit [v(cdo)] = 2
-&value.sight_from_the_beyond [v(cdo)] = 2
-&value.exorcism [v(cdo)] = 3
-&value.pulse_of_the_invisible [v(cdo)] = 3
-&value.umbral_camouflage [v(cdo)] = 3
-&value.blurring_the_mirror [v(cdo)] = 4
-&value.grasp_the_beyond [v(cdo)] = 4
-&value.spirit_drain [v(cdo)] = 4
-&value.feral_lobotomy [v(cdo)] = 5
-&value.malleable_spirit [v(cdo)] = 5
-&value.ultimate_argument_of_logic [v(cdo)] = 5
-&value.as_in_the_beginning [v(cdo)] = 6
-&value.fangs_of_judgement [v(cdo)] = 1
-&value.resist_pain [v(cdo)] = 1
-&value.scent_of_the_true_form [v(cdo)] = 1
-&value.truth_of_gaia [v(cdo)] = 1
-&value.call_to_duty [v(cdo)] = 2
-&value.command_the_gathering [v(cdo)] = 2
-&value.king_of_the_beasts [v(cdo)] =2
-&value.strength_of_purpose [v(cdo)] = 2
-&value.scent_of_the_oathbreaker [v(cdo)] = 3
-&value.sense_balance [v(cdo)] = 3
-&value.weak_arm [v(cdo)] = 3
-&value.wisdom_of_the_ancient_ways [v(cdo)] = 3
-&value.roll_over [v(cdo)] = 4
-&value.scent_of_beyond [v(cdo)] = 4
-&value.take_the_true_form [v(cdo)] = 4
-&value.geas [v(cdo)] = 5
-&value.wall_of_granite [v(cdo)] = 5
-&value.break_the_bonds [v(cdo)] = 6
-&value.beast_speech [v(cdo)] = 1
-&value.call_of_the_wyld [v(cdo)] = 1
-&value.mindspeak [v(cdo)] = 1
-&value.perfect_recall [v(cdo)] = 1
-&value.call_of_the_wrym [v(cdo)] = 2
-&value.distractions [v(cdo)] = 2
-&value.dreamspeak [v(cdo)] = 2
-&value.howls_in_the_night [v(cdo)] = 2
-&value.eye_of_the_cobra [v(cdo)] = 3
+&values.mother's_touch [v(cdo)] = 1
+&values.spirit_snare [v(cdo)] = 1
+&values.spirit_speech [v(cdo)] = 1
+&values.umbral_tether [v(cdo)] = 1
+&values.battle_mandala [v(cdo)] = 2
+&values.command_spirit [v(cdo)] = 2
+&values.sight_from_the_beyond [v(cdo)] = 2
+&values.exorcism [v(cdo)] = 3
+&values.pulse_of_the_invisible [v(cdo)] = 3
+&values.umbral_camouflage [v(cdo)] = 3
+&values.blurring_the_mirror [v(cdo)] = 4
+&values.grasp_the_beyond [v(cdo)] = 4
+&values.spirit_drain [v(cdo)] = 4
+&values.feral_lobotomy [v(cdo)] = 5
+&values.malleable_spirit [v(cdo)] = 5
+&values.ultimate_argument_of_logic [v(cdo)] = 5
+&values.as_in_the_beginning [v(cdo)] = 6
+&values.fangs_of_judgement [v(cdo)] = 1
+&values.resist_pain [v(cdo)] = 1
+&values.scent_of_the_true_form [v(cdo)] = 1
+&values.truth_of_gaia [v(cdo)] = 1
+&values.call_to_duty [v(cdo)] = 2
+&values.command_the_gathering [v(cdo)] = 2
+&values.king_of_the_beasts [v(cdo)] =2
+&values.strength_of_purpose [v(cdo)] = 2
+&values.scent_of_the_oathbreaker [v(cdo)] = 3
+&values.sense_balance [v(cdo)] = 3
+&values.weak_arm [v(cdo)] = 3
+&values.wisdom_of_the_ancient_ways [v(cdo)] = 3
+&values.roll_over [v(cdo)] = 4
+&values.scent_of_beyond [v(cdo)] = 4
+&values.take_the_true_form [v(cdo)] = 4
+&values.geas [v(cdo)] = 5
+&values.wall_of_granite [v(cdo)] = 5
+&values.break_the_bonds [v(cdo)] = 6
+&values.beast_speech [v(cdo)] = 1
+&values.call_of_the_wyld [v(cdo)] = 1
+&values.mindspeak [v(cdo)] = 1
+&values.perfect_recall [v(cdo)] = 1
+&values.call_of_the_wrym [v(cdo)] = 2
+&values.distractions [v(cdo)] = 2
+&values.dreamspeak [v(cdo)] = 2
+&values.howls_in_the_night [v(cdo)] = 2
+&values.eye_of_the_cobra [v(cdo)] = 3
+&values.song_of_heros [v(cdo)] = 3
+&values.song_of_rage [v(cdo)] = 3
+&values.song_of_the_siren [v(cdo)] = 3
+&values.bridge_walker [v(cdo)] = 4
+&values.gift_of_dreams [v(cdo)] = 4
+&values.shadows_by_the_firelight [v(cdo)] = 4
+&values.fabric_of_the_mind [v(cdo)]= 5
+&values.head_games [v(cdo)] = 5
+&values.falling_touch [v(cdo)] = 1
+&values.inspiration [v(cdo)] = 1
+&values.pack_tactics [v(cdo)] = 1
+&values.razor_claws [v(cdo)] = 1
+&values.spur_claws [v(cdo)] = 1
+&values.shield_of_rage [v(cdo)] = 2
+&values.spirit_of_the_fray [v(cdo)]= 2
+&values.true_fear [v(cdo)] = 2
+&values.combat_healing [v(cdo)] = 3
+&values.heart_of_fury [v(cdo)] = 3
+&values.silver_claws [v(cdo)] = 3
+&values.wind_claws [v(cdo)] = 3
+&values.clenched_jaw [v(cdo)] = 4
+&values.full_moon's_light [v(cdo)] = 4
+&values.stoking_fury's_furnace [v(cdo)] = 4
+&values.kiss_of_helios [v(cdo)] = 5
+&values.strength_of_will [v(cdo)] = 5
+&values.unstoppable_warrior [v(cdo)] = 6
