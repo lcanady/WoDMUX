@@ -124,6 +124,128 @@
     dreamspeak|
     howls in the night|
     eye of the cobra|
+    song of heroes|
+    song of rage|
+    song of the siren|
+    bridge walker|
+    gift of dreams|
+    shadows by the firelight|
+    fabric of the mind|
+    head games|
+    falling touch|
+    inspiration|
+    pack tactics|
+    razor claws|
+    spur claws|
+    shield of rage|
+    spirit of the fray|
+    true fear|
+    combat healing|
+    heart of fury|
+    silver claws|
+    wind claws|
+    clenched jaw|
+    full moon's light|
+    stoking fury's furnace|
+    kiss of helios|
+    strength of will|
+    unstoppable warrior|
+    breath of the wyld|
+    man's skin|
+    wyld resurgence|
+    curse of aeolus|
+    kali's tongue|
+    kneel|
+    coup de crace|
+    heart claw|
+    visceral agony|
+    wings of pegasus|
+    body wrack|
+    wasp talons|
+    gorgon's gaze|
+    wyld warp|
+    cooking|
+    desperate strength|
+    resist toxin|
+    sweet scent of honey|
+    trash is treasure|
+    between the cracks|
+    cornered rat ferocity|
+    guise of the hand|
+    odious_aroma|
+    call the rust|
+    gift of the skunk|
+    gift of the termite|
+    laugh of the hyena|
+    attunement|
+    blink|
+    infest|
+    riot|
+    survivor|
+    brother's scent|
+    jam weapon|
+    mercy|
+    calm|
+    grandmother's touch|
+    luna's armor|
+    para bellum|
+    unicorn's arsenal|
+    dazzle|
+    lover's touch|
+    spirit friend|
+    serenity|
+    strike the air|
+    uncaught since the primal morn|
+    halo of the sun|
+    the living wood|
+    faerie light|
+    two tongues|
+    glib tongue|
+    flame dance|
+    howl of the banshee|
+    howl of the unseen|
+    faerie kin|
+    fair fortune|
+    ley lines|
+    balon's gaze|
+    phantasm|
+    call the hunt|
+    fog on the moor|
+    gift of the spriggan|
+    lightening reflexes|
+    visage of fenris|
+    fangs of the north|
+    halt the coward's flight|
+    snarl of the predator|
+    troll skin|
+    might of thor|
+    redirect pain|
+    venom blood|
+    heart of the mountain|
+    hero's stand|
+    endurance_of_heimdall|
+    horde of valhalla|
+    fenris' bite|
+    call great fenris|
+    control simple machine|
+    diagnostics|
+    plug and play|
+    trick shot|
+    cybersenses|
+    sheng-cong's eyes|
+    fu xi's honor|
+    yao's commands|
+    yu's endurance|
+    huang di's sacrifice|
+    hands full of thunder|
+    power surge|
+    steel fur|
+    control complex machine|
+    intrusion|
+    electroshock|
+    elemental favor|
+    doppelganger|
+    signal rider|
 
 
 &lock.gifts [v(cdo)] = 
@@ -214,47 +336,169 @@
 &values.thieving_talons_of_the_magpie [v(cdo)] = 5
 &values.thousand_forms [v(cdo)] = 5
 &values.firebringer [v(cdo)] = 6
-&value.mother's_touch [v(cdo)] = 1
-&value.spirit_snare [v(cdo)] = 1
-&value.spirit_speech [v(cdo)] = 1
-&value.umbral_tether [v(cdo)] = 1
-&value.battle_mandala [v(cdo)] = 2
-&value.command_spirit [v(cdo)] = 2
-&value.sight_from_the_beyond [v(cdo)] = 2
-&value.exorcism [v(cdo)] = 3
-&value.pulse_of_the_invisible [v(cdo)] = 3
-&value.umbral_camouflage [v(cdo)] = 3
-&value.blurring_the_mirror [v(cdo)] = 4
-&value.grasp_the_beyond [v(cdo)] = 4
-&value.spirit_drain [v(cdo)] = 4
-&value.feral_lobotomy [v(cdo)] = 5
-&value.malleable_spirit [v(cdo)] = 5
-&value.ultimate_argument_of_logic [v(cdo)] = 5
-&value.as_in_the_beginning [v(cdo)] = 6
-&value.fangs_of_judgement [v(cdo)] = 1
-&value.resist_pain [v(cdo)] = 1
-&value.scent_of_the_true_form [v(cdo)] = 1
-&value.truth_of_gaia [v(cdo)] = 1
-&value.call_to_duty [v(cdo)] = 2
-&value.command_the_gathering [v(cdo)] = 2
-&value.king_of_the_beasts [v(cdo)] =2
-&value.strength_of_purpose [v(cdo)] = 2
-&value.scent_of_the_oathbreaker [v(cdo)] = 3
-&value.sense_balance [v(cdo)] = 3
-&value.weak_arm [v(cdo)] = 3
-&value.wisdom_of_the_ancient_ways [v(cdo)] = 3
-&value.roll_over [v(cdo)] = 4
-&value.scent_of_beyond [v(cdo)] = 4
-&value.take_the_true_form [v(cdo)] = 4
-&value.geas [v(cdo)] = 5
-&value.wall_of_granite [v(cdo)] = 5
-&value.break_the_bonds [v(cdo)] = 6
-&value.beast_speech [v(cdo)] = 1
-&value.call_of_the_wyld [v(cdo)] = 1
-&value.mindspeak [v(cdo)] = 1
-&value.perfect_recall [v(cdo)] = 1
-&value.call_of_the_wrym [v(cdo)] = 2
-&value.distractions [v(cdo)] = 2
-&value.dreamspeak [v(cdo)] = 2
-&value.howls_in_the_night [v(cdo)] = 2
-&value.eye_of_the_cobra [v(cdo)] = 3
+&values.mother's_touch [v(cdo)] = 1
+&values.spirit_snare [v(cdo)] = 1
+&values.spirit_speech [v(cdo)] = 1
+&values.umbral_tether [v(cdo)] = 1
+&values.battle_mandala [v(cdo)] = 2
+&values.command_spirit [v(cdo)] = 2
+&values.sight_from_the_beyond [v(cdo)] = 2
+&values.exorcism [v(cdo)] = 3
+&values.pulse_of_the_invisible [v(cdo)] = 3
+&values.umbral_camouflage [v(cdo)] = 3
+&values.blurring_the_mirror [v(cdo)] = 4
+&values.grasp_the_beyond [v(cdo)] = 4
+&values.spirit_drain [v(cdo)] = 4
+&values.feral_lobotomy [v(cdo)] = 5
+&values.malleable_spirit [v(cdo)] = 5
+&values.ultimate_argument_of_logic [v(cdo)] = 5
+&values.as_in_the_beginning [v(cdo)] = 6
+&values.fangs_of_judgement [v(cdo)] = 1
+&values.resist_pain [v(cdo)] = 1
+&values.scent_of_the_true_form [v(cdo)] = 1
+&values.truth_of_gaia [v(cdo)] = 1
+&values.call_to_duty [v(cdo)] = 2
+&values.command_the_gathering [v(cdo)] = 2
+&values.king_of_the_beasts [v(cdo)] =2
+&values.strength_of_purpose [v(cdo)] = 2
+&values.scent_of_the_oathbreaker [v(cdo)] = 3
+&values.sense_balance [v(cdo)] = 3
+&values.weak_arm [v(cdo)] = 3
+&values.wisdom_of_the_ancient_ways [v(cdo)] = 3
+&values.roll_over [v(cdo)] = 4
+&values.scent_of_beyond [v(cdo)] = 4
+&values.take_the_true_form [v(cdo)] = 4
+&values.geas [v(cdo)] = 5
+&values.wall_of_granite [v(cdo)] = 5
+&values.break_the_bonds [v(cdo)] = 6
+&values.beast_speech [v(cdo)] = 1
+&values.call_of_the_wyld [v(cdo)] = 1
+&values.mindspeak [v(cdo)] = 1
+&values.perfect_recall [v(cdo)] = 1
+&values.call_of_the_wrym [v(cdo)] = 2
+&values.distractions [v(cdo)] = 2
+&values.dreamspeak [v(cdo)] = 2
+&values.howls_in_the_night [v(cdo)] = 2
+&values.eye_of_the_cobra [v(cdo)] = 3
+&values.song_of_heros [v(cdo)] = 3
+&values.song_of_rage [v(cdo)] = 3
+&values.song_of_the_siren [v(cdo)] = 3
+&values.bridge_walker [v(cdo)] = 4
+&values.gift_of_dreams [v(cdo)] = 4
+&values.shadows_by_the_firelight [v(cdo)] = 4
+&values.fabric_of_the_mind [v(cdo)]= 5
+&values.head_games [v(cdo)] = 5
+&values.falling_touch [v(cdo)] = 1
+&values.inspiration [v(cdo)] = 1
+&values.pack_tactics [v(cdo)] = 1
+&values.razor_claws [v(cdo)] = 1
+&values.spur_claws [v(cdo)] = 1
+&values.shield_of_rage [v(cdo)] = 2
+&values.spirit_of_the_fray [v(cdo)]= 2
+&values.true_fear [v(cdo)] = 2
+&values.combat_healing [v(cdo)] = 3
+&values.heart_of_fury [v(cdo)] = 3
+&values.silver_claws [v(cdo)] = 3
+&values.wind_claws [v(cdo)] = 3
+&values.clenched_jaw [v(cdo)] = 4
+&values.full_moon's_light [v(cdo)] = 4
+&values.stoking_fury's_furnace [v(cdo)] = 4
+&values.kiss_of_helios [v(cdo)] = 5
+&values.strength_of_will [v(cdo)] = 5
+&values.unstoppable_warrior [v(cdo)] = 6
+&values.breath_of_the_wyld [v(cdo)] = 1
+&values.man's_skin [v(cdo)] = 1
+&values.wyld_resurgence [v(cdo)] = 1
+&values.curse_of_aeolus [v(cdo)] = 2
+&values.kali's_tongue [v(cdo)] = 2
+&values.kneel [v(cdo)] = 2
+&values.coup_de_grace [v(cdo)] = 3
+&values.heart_claw [v(cdo)] = 3
+&values.visceral_agony [v(cdo)] = 3
+&values.wings_of_pegasus [v(cdo)] = 3
+&values.body_wrack [v(cdo)] = 4
+&values.wasp_talons [v(cdo)] = 4
+&values.gorgon's_gaze [v(cdo)] = 5
+&values.wyld_warp [v(cdo)] = 5
+&values.cooking [v(cdo)] = 1
+&values.desperate_strength [v(cdo)] = 1
+&values.resist_toxin [v(cdo)] = 1
+&values.scent_of_sweet_honey [v(cdo)] = 1
+&values.trash_is_treasure [v(cdo)] =1
+&values.between_the_cracks [v(cdo)] = 2
+&values.cornered_rat's_ferocity [v(cdo)] = 2
+&values.guise_of_the_hound [v(cdo)] = 2
+&values.odious_aroma [v(cdo)] = 2
+&values.call_the_rust [v(cdo)] = 3
+&values.gift_of_the_skunk [v(cdo)] = 3
+&values.gift_of_the_termine [v(cdo)] = 3
+&values.laugh_of_the_hyena [v(cdo)] = 3
+&values.attunement [v(cdo)] = 4
+&values.blink [v(cdo)] = 4
+&values.infest [v(cdo)] = 4
+&values.riot [v(cdo)] = 5
+&values.survivor [v(cdo)] = 5
+&values.brother's_scent [v(cdo)] = 1
+&values.jam_weapon [v(cdo)] = 1
+&values.mercy [v(cdo)] = 1
+&values.calm [v(cdo)] =2
+&values.grandmother's_touch [v(cdo)] = 2
+&values.luna's_armor [v(cdo)] = 2
+&values.para_bellum [v(cdo)] = 2
+&values.unicorn's arsenal [v(cdo)] = 2
+&values.dazzle [v(cdo)] = 3
+&values.lover's_touch [v(cdo)] = 3
+&values.spirit_friend [v(cdo)]  = 3
+&values.serenity [v(cdo)] = 4
+&values.strike_the_air [v(cdo)] = 4
+&values.uncaught_since_the_primal_morn [v(cdo)] = 4
+&values.halo_of_the_sun [v(cdo)] = 5
+&values.the_living_wood [v(cdo)] = 5
+&values.faerie_light [v(cdo)] = 1
+&values.two_tongues [v(cdo)] = 1
+&values.glib_tongue [v(cdo)] = 2
+&values.flame_dance [v(cdo)] = 2
+&values.howl_of_the_banshee [v(cdo)] = 2
+&values.howl_of_the_unseen [v(cdo)] = 2
+&values.faerie_kin [v(cdo)] = 3
+&values.fair_fortune [v(cdo)] = 3
+&values.ley_lines [v(cdo)] = 3
+&values.balor's_gaze [v(cdo)] = 4
+&values.phantasm [v(cdo)] = 4
+&values.call_the_hunt [v(cdo)] = 5
+&values.fog_on_the_moor [v(cdo)] = 5
+&values.gift_of_the_spriggan [v(cdo)] = 5
+&values.lightening_reflexes [v(cdo)] = 1
+&values.visage_of_fenris [v(cdo)] = 1
+&values.fangs_of_the_north [v(cdo)] = 2
+&values.halt_the_coward's_flight [v(cdo)] = 2
+&values.snarl_of_the_predator [v(cdo)] = 2
+&values.troll_skin [v(cdo)] = 2
+&values.might_of_thor [v(cdo)] = 3
+&values.redirect_pain [v(cdo)] = 3
+&values.venom_blood [v(cdo)] = 3
+&values.heart_of_the_mountain [v(cdo)] = 4
+&values.hero's_stand [v(cdo)] = 4
+&values.endurance_of_heimdall [v(cdo)] = 5
+&values.horde_of_valhalla [v(cdo)] = 5
+&values.fenris'_bite [v(cdo)] = 5
+&values.call_great_fenris [v(cdo)] = 6
+&values.control_simple_machine [v(cdo)] = 1
+&values.diagnostics [v(cdo)] = 1
+&values.plug_and_play [v(cdo)] = 1
+&values.trick_shot [v(cdo)] = 1
+&values.cybersenses [v(cdo)] - 2
+&values.sheng-cong's_eyes [v(cdo)] = 1
+&values.fu_xi's_honor [v(cdo)] = 2
+&values.yao's_commands [v(cdo)] = 3
+&values.yu's_endurance [v(cdo)] = 4
+&values.huang_di's_sacrifice [v(cdo)] = 5
+&values.hands_full_of_thunder [v(cdo)] = 2 
+&values.power_surge [v(cdo)] = 2
+&values.steel_fur [v(cdo)] = 2
+&values.control_complex_machine [v(cdo)] = 3
+&values.intrusion [v(cdo)]= 3
+&values.electroshock [v(cdo)] = 3
+&values.elemental_favor [v(cdo)] = 3
+&values.doppelganger [v(cdo)] = 4
+&values.signal_rider [v(cdo)]= 4
