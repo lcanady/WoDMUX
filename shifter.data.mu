@@ -319,7 +319,52 @@
     mindblock|
     sidestep death|
     luna's avenger|
-
+    paws of the newborn cub|
+    renew the cycle|
+    balance|
+    channeling|
+    iron resolve|
+    inner light|
+    inner strength|
+    resist temptation|
+    surface attunement|
+    wuxing|
+    clarity|
+    merciful blow|
+    wind's returning favor|
+    preternatural awareness|
+    circular attack|
+    harmonious unity of the emerald mother|
+    wisdom of the seer|
+    sense magic|
+    shroud|
+    spirit of the lizard|
+    coils of the serpent|
+    fetish fetch|
+    shadows at dawn|
+    spirit of the bird|
+    spirit of the fish|
+    banish totem|
+    chains of the mist|
+    invisibility|
+    rending the craft|
+    scrying|
+    call elemental|
+    hand of the earth lords|
+    fetish doll|
+    beat of the heart-drum|
+    call the breeze|
+    camouflage|
+    ice echo|
+    cutting wing|
+    salmon swim|
+    speak with wing spirits|
+    blood of the north|
+    bloody feast|
+    sky running|
+    call of the cannibal spirit|
+    chill of the early frost|
+    invoke the spirits of the storm|
 
 &lock.gifts [v(cdo)] = 
     or(
@@ -647,3 +692,49 @@
 &values.mindblock [v(cdo)] = 4
 &values.sidestep_death [v(cdo)] = 4
 &values.luna's_avenger [v(cdo)] = 5
+&values.paws_of_the_newborn_cub [v(cdo)] = 5
+&values.renew_the_cycle [v(cdo)] = 6
+&values.balance [v(cdo)] = 1
+&values.channeling [v(cdo)] = 1
+&values.iron_resolve [v(cdo)] = 1
+&values.inner_light [v(cdo)] = 2
+&values.inner_strength [v(cdo)] = 2
+&values.resist_temptation [v(cdo)] = 2
+&values.surface_attunement [v(cdo)] = 2
+&values.wuxing [v(cdo)] = 2
+&values.clarity [v(cdo)]= 3
+&values.merciful_blow [v(cdo)] = 3
+&values.wind's_returning_favor [v(cdo)] = 3
+&values.preternatural_awareness [v(cdo)] = 4
+&values.circular_attack [v(cdo)] = 5
+&values.harmonious_unity_of_the_emerald_mother [v(cdo)] = 5
+&values.wisdom_of_the_seer [v(cdo)] = 5
+&values.sense_magic [v(cdo)] = 1
+&values.shroud [v(cdo)] =1
+&values.sprit_of_the_lizard [v(cdo)] = 1
+&values.coils_of_the_serpent [v(cdo)] = 2
+&values.fetish_fetch [v(cdo)] = 2
+&values.shadows_at_dawn [v(cdo)] = 1
+&values.spirit_of_the_bird [v(cdo)] = 2
+&values.spirit_of_the_fish [v(cdo)] = 2
+&values.banish_totem [v(cdo)] = 3
+&values.chains_of_the_mist [v(cdo)] = 3
+&values.invisibility [v(cdo)] = 3
+&values.rending_the_Craft [v(cdo)] = 3
+&values.scrying [v(cdo)] = 3
+&values.call_elemental [v(cdo)] = 4
+&values.hand_of_the_earth [v(cdo)] = 4
+&values.fetish_doll [v(cdo)] = 5
+&values.beat_of_the_heart-drum [v(cdo)] = 1
+&values.call_the_breeze [v(cdo)] = 1
+&values.camouflage [v(cdo)] = 1
+&values.ice_each [v(cdo)] = 1
+&values.cutting_wind [v(cdo)] = 2
+&values.salmon_swim [v(cdo)] = 2
+&values.speak_with_wind_spirits [v(cdo)] = 2
+&values.blood_of_the_north [v(cdo)] = 3
+&values.bloody_feast [v(cdo)] = 3
+&values.sky_running [v(cdo)] = 3
+&values.call_of_the_cannibal_spirit [v(cdo)] = 4
+&values.chill_of_early_frost [v(cdo)] = 4
+&values.invoke_the_spirts_of_the_storm [v(cdo)] = 5
