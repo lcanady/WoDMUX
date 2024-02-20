@@ -11,7 +11,7 @@
 &cmd.set [v(cco)] = $[\+@]?stat(\/(.*))?\s+((.*)\/)?(.*)\s*=\s*(.*):
 
     [setq(0, if(words(%4),if( strmatch(lcstr(%4), me), %#, *%4), %# ))]   // The target to set the stat on.
-    [setq(1, statname(%q0, before(%5,%()))]        // Get the name and attribute string.
+    [setq(1, statname(%q0, trim(before(%5,%())))]        // Get the name and attribute string.
     [setq(2, extract(%q1, 2, 1, .))]    // The attribute string.
     [setq(3, extract(%q1, 3, 1, .))]    // The stat name.
     [setq(4, 
@@ -33,7 +33,7 @@
     // edit the target.
     @assert 
         or(
-            strmatch(%#, owner(%q0)) 
+            strmatch(%#, owner(%q0)), 
             orflags(%#, wWZ)
         ) = {
         @pemit %#= You do not have permission to set that stat.
@@ -47,15 +47,16 @@
     };
 
     // If chargen is guided, do they have points set?
-    @assert and(
-        hasattr(%va/guided),
-        gt(words(lattr(%q0/points*)), 1)
+    @assert if(
+        hasattr(%va,guided),
+        gt(words(lattr(%q0/points*)), 1),
+        1
     ) = {
         @pemit %#= You must set your points before you can set your stats.;
         @pemit %#= Use %ch+points%cn to set your points.;
         @pemit %#= See %ch+cghelp%cn for more information.;
     };
-
+    
     // check if the target has access to the stat-type.
     @assert 
         if(
@@ -94,11 +95,31 @@
         @pemit %#= That stat requires an %(instance%) to be set.;
     };
 
+    // does it have an instance and not need one?
+    @assert 
+       if(
+            not(hasattr(%va,instanced.%q3)),
+            not(words(%q5)),
+            words(%q5)
+       ) = {
+        @pemit %#= That stat does not require an %(instance%) to be set.;
+    };
+
+    [setq(8, 
+        if(
+            or(
+                strmatch(%6, +*),
+                strmatch(%6, -*)
+            ),
+            add(getstat(%q0,  if(%q5, %q3%(%q5%), %q3)), %6),
+            %6
+        )
+    )];
 
     // see if the value is valid.
     @assert or(
             orflags(%#, WZ),
-            member(%q4, %6, |),
+            member(%q4, %q8, |),
             not(%q4),
             not(%6),
             
@@ -115,7 +136,7 @@
     // If guided chargen is enabled...
     @assert not(u(%va/guided)) = {
         @trig me = trig.guided = %#, %0,  
-    }
+    };
 
     @if strmatch(lcstr(%2), temp) = {
         // just set the temp attribute if the setter is admin.
@@ -124,8 +145,8 @@
                 &_%q2.[edit(%q7,%b,_)].TEMP %q0 = [getstat(%q0, %q7)];
                 @pemit %#= Temp [capstr(%q7)] cleared from [moniker(%q0)].
             }, {
-                &_%q2.[edit(%q7,%b,_)].TEMP %q0 = %6;
-                @pemit %#= Temp [capstr(%q7)] set to %ch[%6]%cn on [moniker(%q0)].
+                &_%q2.[edit(%q7,%b,_)].TEMP %q0 = %q8;
+                @pemit %#= Temp [capstr(%q7)] set to %ch[%q8]%cn on [moniker(%q0)].
             }
         }, {
             @pemit %#= You do not have permission to set that stat.
@@ -139,9 +160,9 @@
             @pemit %#= [capstr(%q7)] cleared from [moniker(%q0)].
         }, {
             // set the attribute & temp attribute.
-            &_%q2.[edit(%q7,%b,_)] %q0 = %6;
-            &_%q2.[edit(%q7,%b,_)].TEMP %q0 = %6;
-            @pemit %#= [capstr(%q7)] set to %ch[%6]%cn on [moniker(%q0)].
+            &_%q2.[edit(%q7,%b,_)] %q0 = %q8;
+            &_%q2.[edit(%q7,%b,_)].TEMP %q0 = %q8;
+            @pemit %#= [capstr(%q7)] set to %ch[%q8]%cn on [moniker(%q0)].
         };
     };
 
@@ -275,19 +296,4 @@
     @pemit %# = u(%vb/fn.sheet, %q0)
 
 @set [v(cco)]/cmd.sheet = reg
-
-/*
-=============================================================================
-===== CMD.ROLL ==============================================================
-    This command rolls a stat against a target number.
-
-    USAGE:
-        +roll[\perm] <stat> [vs <difficulty>]
-
-=============================================================================
-*/
-
-&cmd.roll [v(cco)] = $[\+@]?roll(\/(.*))?\s+([^vs]+)\s*(vs\s*(.*))?:
-    @pemit %#= ulocal(%vb/fn.roll, %#, %3, %5, %2);
-@set [v(cco)]/cmd.roll = reg
 

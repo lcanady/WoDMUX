@@ -1,0 +1,27 @@
+
+
+
+
+
+CHARGEN TLDR;
+-------------
+
+Setting stuff
+
+    * To set most things in cargen, type '+stat <stat>=<value>'.
+    * To set a skill specialty, type '+stat/specialty <ability>=<specialty>'.
+
+
+Viewing stuff
+
+    * To see your progres, type '+sheet'.
+    * To search for a stat, type '+stat/search <partial name>'
+
+
+Other useful things
+
+    * To set a character note, see '+help +cnote'.
+    * To set Your background, see '+help +background'.
+
+
+

@@ -531,59 +531,24 @@
 
 /*
 =============================================================================
-===== FN.ROLL ===============================================================
-    This function rolls a number of dice and returns the results.
+===== FN.IDLECOLOR ==========================================================
 
-    %0 - The character to roll for.
-    %1 - The stats to roll.
-    %2 - The difficulty of the roll.
-    %3 - Whether or not the roll is permanent.
+    This function returns the idle color for a character.
 
-    returns - The results of the roll.
+    %0 - The seconds to colorize.
+
+    returns - The idle in color.
 =============================================================================
 */
 
-&fn.roll [v(cfo)] = 
-    trim(
-        [setq(8, if(%2, %2, 6))]
-        [setq(0, edit( edit(%1, +, %b+%b), -, %b-%b))]
-        [setq(1, 
-            ladd(
-                iter(
-                    %q0, 
-                    [if( isnum(##), ##, if(%3, getstat(%0, ##), gettempstat(%0, ##)))]
-                )
-            )
-        )]
-        [setq(2, revwords( sort(iter( lnum(%q1), die(1,10) ))))]
-        [setq(
-            3, 
-            iter(%q2, 
-                switch( 1,
-                    gte(##, %q8), %ch%cg[##]%cn,
-                    eq(##, 1),   %ch%cr[##]%cn,
-                    %ch%cy[##]%cn
-                )
-            )    
-        )]
-        [setq(4, words(iter(%q2, if(gte(##,%q8), ##))))]
-        [setq(5, iter(%q0, if(words(setr(6,statname(%1, ##))), %ch[capstr(lcstr(last(%q6, .)))]%cn, if(isnum(##),%ch##%cn,##) )))]
-        [setq(6, words(iter(%q2, if(eq(##,1), ##))))]
-        [setq(7, sub(%q4, %q6))]
-        
-        %chROLL[if(%3,/PERM)]>>%cn [moniker(%#)] rolls %q5 vs %ch[%q8]%cn => 
-        %(
-            [switch(1,
-                eq(%q7, 0), %ch%cy0%cn,
-                lt(%q7, 0), %ch%cr%q7%cn,
-                %ch%cg%q7%cn 
-            )]
-            
-        %) 
-            [switch(1,
-                eq(%q7,1), success,
-                gt(%q7,1), successes,
-                eq(%q7,0), successes %(%ch%cyfailure%cn%),
-                successes %(%ch%crbotch%cn%)
-            )] %(%q3%)
+&fn.idlecolor [v(cfo)] = 
+    switch(1,
+        lte(%0, 60), %ch%cg[singletime(%0)]%cn,
+        lte(%0 , 120), %ch%cg[singletime(%0)]%cn,
+        lte(%0, 300), %ch%cy[singletime(%0)]%cn,
+        lte(%0, 900), %cr[singletime(%0)]%cn,
+        lte(%0, 1200), %cr[singletime(%0)]%cn,
+        %ch%cx[singletime(%0)]%cn
     )
+
+&ufunc/privileged.idlecolor [v(cfo)] = u(#16/fn.idlecolor, %0)
