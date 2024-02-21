@@ -1,3 +1,66 @@
+&list.bio_garou [v(cdo)] = 
+    auspice|
+    breed|
+    tribe
+
+&lock.bio_garou [v(cdo)] = u(.is, %0, garou)
+
+&lock.breed [v(cdo)] = 
+    or(
+        u(.is, %0, garou),
+        u(.is, %0, fera)
+    )
+
+&lock.homid [v(cdo)] = u(.is, %0, garou)
+&lock.lupus [v(cdo)] = u(.is, %0, garou)
+&lock.metis [v(cdo)] = u(.is, %0, garou)
+
+&values.auspice [v(cdo)] =
+    ragabash|
+    theurge|
+    philodox|
+    galliard|
+    ahroun
+
+&lock.auspice [v(cdo)] = 
+    or(
+        u(.is, %0, garou),
+        u(.is, %0, fera)
+    )
+
+&lock.ragabash [v(cdo)] = u(.is, %0, garou)
+&lock.theurge [v(cdo)] = u(.is, %0, garou)
+&lock.philodox [v(cdo)] = u(.is, %0, garou)
+&lock.galliard [v(cdo)] = u(.is, %0, garou)
+&lock.ahroun [v(cdo)] = u(.is, %0, garou)
+
+&values.tribe [v(cdo)] =
+    black furies|
+    bone gnawers|
+    children of gaia|
+    fianna|
+    get of fenris|
+    glass walkers|
+    red talons|
+    shadow lords|
+    silent striders|
+    silver fangs|
+    stargazers|
+    uktena|
+    wendigo
+
+&lock.tribe [v(cdo)] = u(.is, %0, garou)
+
+
+&garou_talents [v(cdo)] =
+    leadership|
+    primal urge
+
+&lock.garou_talents [v(cdo)] = u(.is, %0, garou)
+&default.garou_talents [v(cdo)] = 0
+&values.garou_talents [v(cdo)] = 1|2|3|4|5
+
+
 &list.gifts [v(cdo)] =
     apecraft's blessing|
     city running|

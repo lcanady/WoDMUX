@@ -11,7 +11,7 @@ Format the name of the room.
 
 @nameformat  [v(rp)] = 
     center(
-        %cr%[%b%ch%cm[u(fn.displayname, %#, %l)]%cn%cr%b%]%cn, 
+        %cr%[%b%ch%cy[u(fn.displayname, %#, %l)]%cn%cr%b%]%cn [if( not(hasflag(%l, day)),  %cr%[%ch%cmNight Zone%cn%cr%]%cn)] , 
         width(%#), 
         %cr=%cn
     )

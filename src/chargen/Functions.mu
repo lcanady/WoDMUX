@@ -4,6 +4,22 @@
     @dolist lattr( %!/ufunc/privileged.* )=
         @function/preserve/privileged [rest( ##, . )]=%!/##
 
+/*
+=============================================================================
+===== FN.SETSTAT ============================================================
+
+    This function sets the value of a system stst on a character.
+
+    %0 - The character to set the stat on.
+    %1 - The stat to set.
+    %2 - The value to set the stat to.
+
+    returns - The value of the stat.
+=============================================================================
+*/
+
+&fn.setstat [v(cfo)] = [set(%0. [statname(%0, %1)]: %2 )]
+&ufunc.setstat [v(cfo)] = ulocal(#16/fn.setstat, %0, %1, %2)
     
 /*
 =============================================================================
@@ -38,6 +54,7 @@
             get(%0/%q3),
             %q4
         )]
+        
     )
 
 &ufunc.getstat [v(cfo)] = ulocal(#16/fn.getstat, %0, %1)
@@ -100,7 +117,7 @@
 */
 
 &fn.statname [v(cfo)] = 
-    [first(
+    first(
         iter(
             lattr(%va/LIST.* ),
             if( 
@@ -115,7 +132,7 @@
                 ##.[edit(%q0,%b,_)]
             )
         )
-    )]
+    )
     
 
 // tutn it into a golbal.
@@ -134,11 +151,11 @@
 =============================================================================
 */
 
-&fn.lock [v(cfo)] = 
+&fn.lock [v(cfo)] =
     if(
         hasattr(%va, lock.%0),
         u(%va/lock.%0, %1),
-        1
+         1
     )
 /*
 ##########################################################################
@@ -326,14 +343,18 @@
 */
 
 &fn.sheet.bio [v(cfo)] = 
+    [trim(
+        [setq(z,)]
+        [iter( lattr(%va/list.bio*),setq(z, setunion(%qz,[get(%va/##)],|,|) ))]
+    )]
+   
     [[header(%cr%[%b%cyBio%cn%cr%b%]%cn,,%cr=%cn)]]%r
     [table(
             [iter(
-            [u(fn.filter.lock, %0, get(%va/list.bio))],
-            %b[u(fn.format, %0, ##, sub(div(width(%#),2),2) )]%b,|,|
+            [ulocal(fn.filter.lock, %0,  [trim(%qz,,|)] )] ,
+            %b[ulocal(fn.format, %0, ##, sub(div(width(%#),2),2) )]%b,|,|
         )], sub(div(width(%#),2),1), width(%#), |
     )]
-    
 
 /*
 =============================================================================
@@ -380,7 +401,7 @@
     [setq(
         3,
         filter(filter.exists, iter(
-            get(%va/LIST.TALENTS),
+            u(fn.combine, lattr(%va/LIST.TALENTS)),
             [u(fn.filter.lock, %0, edit(##,%b,_))],|,|
         ),|,|)
     )]
@@ -407,6 +428,9 @@
     )]
 
 
+&fn.combine [v(cfo)] = trim(sort(squish(trim(iter(%0, [trim([get(%va/##)])]|,,)|)),,|),,|)
+
+
 /*
 =============================================================================
 ===== FN.SHEET.ADVANTAGES ===================================================
@@ -421,19 +445,19 @@
 &fn.sheet.advantages [v(cfo)] =  
     [setq(0,
         iter(
-             filter( filter.temp, lattr(%0/_BACKGROUNDS.*)),
+             filter( filter.temp, lattr(%0/_BACKGROUNDS*)),
             after(lcstr(##),.),,|
         )
     )]
     [setq(1,
         iter(
-             filter( filter.temp, lattr(%0/_MERITS.*)),
+             filter( filter.temp, lattr(%0/_MERITS*)),
             after(lcstr(##),.),,|
         )
     )]
     [setq(2,
         iter(
-             filter( filter.temp, lattr(%0/_FLAWS.*)),
+             filter( filter.temp, lattr(%0/_FLAWS*)),
             after(lcstr(##),.),,|
         )
     )]
@@ -518,9 +542,9 @@
     [ulocal(fn.sheet.bio, %0)]%r
     [ulocal(fn.sheet.attributes, %0)]%r
     [ulocal(fn.sheet.abilities, %0)]%r
-    [if( words(lattr(%0/_BACKGROUNDS.*)), [ulocal(fn.sheet.advantages, %0)]%r,)]
-    [if( words(lattr(%0/_GIFTS.*)), [ulocal(fn.sheet.powers.werewolf, %0)]%r,)]
-    [if( words(lattr(%0/_POOLS.*)), [u(fn.sheet.pools, %0)]%r)]
+    [if( or( words(lattr(%0/_BACKGROUNDS*)), words(lattr(%0/_MERITS*)),words(lattr(%0/_FLAWS*))), [ulocal(fn.sheet.advantages, %0)]%r,)]
+    [if( or(words(lattr(%0/_GIFTS*)),words(lattr(%0/_RITES*)), getstat(%0, glory), getstat(%0, honor), getstat(%o, wisdom)), [ulocal(fn.sheet.powers.werewolf, %0)]%r,)]
+    [u(fn.sheet.pools, %0)]%r
     [repeat(%cr=%cn, width(%#))]
     [if(
         not( hasattr(%0, _approved) ),

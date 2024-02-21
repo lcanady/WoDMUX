@@ -5,11 +5,6 @@
     concept|
     nature|
     demeanor|
-    clan|
-    generation|
-    breed|
-    auspice|
-    tribe|
     age|
     apparent age
 
@@ -26,55 +21,16 @@
 
 
 &lock.template [v(cdo)] = orflags(%0, wWZ)
+&trig.template [v(cdo)] = 
+   @if u(.is, %0, garou) = {
+    &_pools.blood %0 = 20;
+    &_pools.blood.temp %0 = 20;
+   }, {
+    &_pools.blood %0 = 10;
+    &_pools.blood.temp %0 = 10;
+   }
 
-&lock.clan [v(cdo)] = u(.is, %0, vampire)
-&lock.generation [v(cdo)] = u(.is, %0, vampire)
 
-&lock.breed [v(cdo)] = 
-    or(
-        u(.is, %0, garou),
-        u(.is, %0, fera)
-    )
-
-&lock.homid [v(cdo)] = u(.is, %0, garou)
-&lock.lupus [v(cdo)] = u(.is, %0, garou)
-&lock.metis [v(cdo)] = u(.is, %0, garou)
-
-&values.auspice [v(cdo)] =
-    ragabash|
-    theurge|
-    philodox|
-    galliard|
-    ahroun
-
-&lock.auspice [v(cdo)] = 
-    or(
-        u(.is, %0, garou),
-        u(.is, %0, fera)
-    )
-
-&lock.ragabash [v(cdo)] = u(.is, %0, garou)
-&lock.theurge [v(cdo)] = u(.is, %0, garou)
-&lock.philodox [v(cdo)] = u(.is, %0, garou)
-&lock.galliard [v(cdo)] = u(.is, %0, garou)
-&lock.ahroun [v(cdo)] = u(.is, %0, garou)
-
-&values.tribe [v(cdo)] =
-    black furies|
-    bone gnawers|
-    children of gaia|
-    fianna|
-    get of fenris|
-    glass walkers|
-    red talons|
-    shadow lords|
-    silent striders|
-    silver fangs|
-    stargazers|
-    uktena|
-    wendigo
-
-&lock.tribe [v(cdo)] = u(.is, %0, garou)
 
 &list.attributes [v(cdo)] = 
     strength|
@@ -97,8 +53,6 @@
     empathy|
     expression|
     intimidation|
-    leadership|
-    primal urge|
     streetwise|
     subterfuge
 
@@ -109,7 +63,6 @@
         u(.is, %0, garou),
         u(.is, %0, fera)
     )
-
 
 &LIST.skills [v(cdo)] =
     animal-ken|
@@ -130,9 +83,7 @@
 
 &lock.security [v(cdo)] = 
     or(
-        u(.is, %0, mortal),
-        u(.is, %0, ghoul),
-        u(.is, %0, vampire)
+        u(.is, %0, mortal)
     )
 
 &list.knowledges [v(cdo)] =

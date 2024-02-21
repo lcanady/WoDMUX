@@ -8,7 +8,7 @@
 =============================================================================
 */
 
-&cmd.set [v(cco)] = $[\+@]?stat(\/(.*))?\s+((.*)\/)?(.*)\s*=\s*(.*):
+&cmd.set [v(cco)] = $[\+@]?stat(\/([\w\/]+))?\s+((.*)\/)?(.*)\s*=\s*(.*):
 
     [setq(0, if(words(%4),if( strmatch(lcstr(%4), me), %#, *%4), %# ))]   // The target to set the stat on.
     [setq(1, statname(%q0, trim(before(%5,%())))]        // Get the name and attribute string.
@@ -78,6 +78,12 @@
             @pemit %#= You do not have permission to set that stat.
         };
 
+    @assert not(member(%2, force, /)) = {
+         // if the switches includes force, force the stat onto the character.
+        &_[edit(after(lcstr(%2),force/),%b,_)].[edit(%5,%b,_)] %q0 = %6;
+        &_[edit(after(lcstr(%2),force/),%b,_)].[edit(%5,%b,_)].TEMP %q0 = %6;
+        @pemit %#= [capstr(lcstr(%5))] set to %ch[%6]%cn on [moniker(%q0)].
+    };
 
     // is the stat even valid?
     @assert words(%q3) = {
@@ -152,7 +158,6 @@
             @pemit %#= You do not have permission to set that stat.
         }
     }, {
-        
         @if not(%6) = {
             // remove the attribute if the value is 0.
             &_%q2.[edit(%q7,%b,_)] %q0 =;
@@ -166,6 +171,8 @@
         };
     };
 
+    @trigger  %va/trig.%q2 = %q0, %q7, %q8;
+    @trigger  %va/trig.[edit(%q7,%b,_)] = %q0, %q7, %q8;
     
 
 @set [v(cco)]/cmd.set = reg
