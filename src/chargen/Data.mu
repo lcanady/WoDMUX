@@ -16,6 +16,10 @@
 &values.template [v(cdo)] = 
     garou|
     fera|
+    kinfolk|
+    ghoul|
+    changeling|
+    kinain|
     vampire|
     mage
 
@@ -87,7 +91,6 @@
     )
 
 &list.knowledges [v(cdo)] =
-    academics|
     computer|
     enigmas|
     finance|

@@ -52,13 +52,21 @@
 &lock.tribe [v(cdo)] = u(.is, %0, garou)
 
 
-&garou_talents [v(cdo)] =
+&list.talents_garou [v(cdo)] =
     leadership|
     primal urge
 
-&lock.garou_talents [v(cdo)] = u(.is, %0, garou)
-&default.garou_talents [v(cdo)] = 0
-&values.garou_talents [v(cdo)] = 1|2|3|4|5
+&lock.talents_garou [v(cdo)] = u(.is, %0, garou)
+&default.talents_garou [v(cdo)] = 0
+&values.talents_garou [v(cdo)] = 1|2|3|4|5
+
+&list.KNOWLEDGES_garou [v(cdo)] =
+    academics
+
+
+&lock.KNOWLEDGES_garou [v(cdo)] = u(.is, %0, garou)
+&default.KNOWLEDGES_garou [v(cdo)] = 0
+&values.KNOWLEDGES_garou [v(cdo)] = 1|2|3|4|5
 
 
 &list.gifts [v(cdo)] =

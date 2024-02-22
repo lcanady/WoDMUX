@@ -206,7 +206,8 @@
 
     &_bio.template %q0 = lcstr(%3);
     &_bio.template.temp %q0 = lcstr(%3);
-    @pemit %#= Template set to %ch[capstr(%3)]%cn on [moniker(%q0)].
+    @pemit %#= Template set to %ch[capstr(%3)]%cn on [moniker(%q0)].;
+    @trigger %va/trig.template = %q0, %3;
 
 @set [v(cco)]/cmd.template = reg
 

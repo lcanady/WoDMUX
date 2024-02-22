@@ -117,22 +117,25 @@
 */
 
 &fn.statname [v(cfo)] = 
-    first(
-        iter(
-            lattr(%va/LIST.* ),
-            if( 
-                words(
-                    setr( 0, 
-                        grab(   
-                            
-                            get(%va/list.[after(##,.)]) , %1*, |
+    
+      [setq(0,  
+            iter(
+                lattr(%va/LIST.* ),
+                if( 
+                    words(
+                        setr( 0, 
+                            grab(   
+                                
+                                get(%va/list.[after(##,.)]) , %1*, |
+                            )
                         )
-                    )
-                ),
-                ##.[edit(%q0,%b,_)]
+                    ),
+                    ##.[edit(%q0,%b,_)]
+                )
             )
-        )
-    )
+        )]
+        [first(iter( %q0,  if(u(fn.checkfulllock, %0, ##), ## )))]
+   
     
 
 // tutn it into a golbal.
@@ -157,6 +160,31 @@
         u(%va/lock.%0, %1),
          1
     )
+
+
+
+&fn.checkfulllock [v(cfo)] = 
+    [trim(
+        [setq(0, extract(%1, 2, 1, .))] // The attribute string.
+        [setq(1, extract(%1, 3, 1, .))] // The stat name.   
+    )]
+    [setq(a,
+        if(
+            hasattr(%va, lock.%q0),
+            u(%va/lock.%q0, %0),
+            1
+        )
+    )]
+    [setq(b,
+        if(
+            hasattr(%va, lock.%q1),
+            u(%va/lock.%q1, %0),
+            1
+        )
+    )]
+    [and(%qa, %qb)]
+    
+
 /*
 ##########################################################################
 ##### FILTERS ############################################################
@@ -330,6 +358,19 @@
         )]
 
 
+
+&fn.listcategory [v(cfo)] = 
+    [setq(0, 
+        iter(
+            lattr(%va/list.%1*),
+            if(
+                u(fn.checkfulllock, %0, ##), ##
+            )
+        )
+    )]
+    [iter(%q0, [ulocal(fn.filter.lock, %0,  u(fn.combine, %q0) )],|,|)]
+
+
 /*
 =============================================================================
 ===== FN.SHEET.BIO ==========================================================
@@ -343,19 +384,15 @@
 */
 
 &fn.sheet.bio [v(cfo)] = 
-    [trim(
-        [setq(z,)]
-        [iter( lattr(%va/list.bio*),setq(z, setunion(%qz,[get(%va/##)],|,|) ))]
-    )]
    
     [[header(%cr%[%b%cyBio%cn%cr%b%]%cn,,%cr=%cn)]]%r
     [table(
-            [iter(
-            [ulocal(fn.filter.lock, %0,  [trim(%qz,,|)] )] ,
+        [iter(
+            u(fn.listcategory, %0, BIO),
             %b[ulocal(fn.format, %0, ##, sub(div(width(%#),2),2) )]%b,|,|
         )], sub(div(width(%#),2),1), width(%#), |
     )]
-
+    
 /*
 =============================================================================
 ===== FN.SHEET.ATTRIBUTES ===================================================
@@ -396,34 +433,13 @@
         [setq(1, sub(sub(width(%#), mul(%q0,2)), 6)   )] // the width of the second col.
         [setq(2, max(words(%1,|), words(%2,|), words(%3,|)))]
     )]
-    
-    // make the TALEMTS list.  First filter out any talents that don't apply.
-    [setq(
-        3,
-        filter(filter.exists, iter(
-            u(fn.combine, lattr(%va/LIST.TALENTS)),
-            [u(fn.filter.lock, %0, edit(##,%b,_))],|,|
-        ),|,|)
-    )]
-    [setq(
-        4,
-        filter( filter.exists, iter(
-            get(%va/LIST.SKILLS),
-            [u(fn.filter.lock, %0, edit(##,%b,_))],|,|
-        ),|,|)
-    )]
-    [setq(
-        5,
-        filter( filter.exists, iter(
-            get(%va/LIST.KNOWLEDGES),
-            [u(fn.filter.lock, %0, edit(##,%b,_))],|,|
-        ), |, |)
-    )]
 
     [header(%cr%[%b%cyAbilities%cn%cr%b%]%cn,,%cr=%cn)]%r
     [u( fn.3cols, 
         %0,
-        %q3,%q4,%q5,
+        u(fn.listcategory, %0, TALENTS),
+        u(fn.listcategory, %0, SKILLS),
+        u(fn.listcategory, %0, KNOWLEDGES),
         Talents|Skills|Knowledges
     )]
 
@@ -484,13 +500,13 @@
 &fn.sheet.powers.werewolf [v(cfo)] = 
     [setq(0,
         iter(
-             filter( filter.temp, lattr(%0/_GIFTS.*)),
+             filter( filter.temp, lattr(%0/_GIFTS*)),
             after(lcstr(##),.),,|
         )
     )]
     [setq(1,
         iter(
-             filter( filter.temp, lattr(%0/_RITES.*)),
+             filter( filter.temp, lattr(%0/_RITES*)),
             after(lcstr(##),.),,|
         )
     )]
