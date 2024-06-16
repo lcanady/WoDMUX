@@ -8,20 +8,26 @@
 =============================================================================
 */
 
-&cmd.set [v(cco)] = $[\+@]?stat(\/([\w\/]+))?\s+((.*)\/)?(.*)\s*=\s*(.*):
+&cmd.set [v(cco)] = $[\+@]?stat[s]?(\/([\w\/]+))?\s+((.*)\/)?(.*)\s*=\s*(.*):
 
-    [setq(0, if(words(%4),if( strmatch(lcstr(%4), me), %#, *%4), %# ))]   // The target to set the stat on.
-    [setq(1, statname(%q0, trim(before(%5,%())))]        // Get the name and attribute string.
-    [setq(2, extract(%q1, 2, 1, .))]    // The attribute string.
-    [setq(3, extract(%q1, 3, 1, .))]    // The stat name.
+    // The target to set the stat on.
+    [setq(0, if(words(%4),if( strmatch(lcstr(%4), me), %#, *%4), %# ))] 
+    // Get the name and attribute string.
+    [setq(1, statname(%q0, trim(before(%5,%())))]
+    // The attribute string.
+    [setq(2, extract(%q1, 2, 1, .))]
+    // The stat name.
+    [setq(3, extract(%q1, 3, 1, .))]
     [setq(4, 
         if( 
             not(get(%va/values.%q3)), 
             get(%va/values.%q2), 
             get(%va/values.%q3) 
         )
-    )]  // The valid values for the stat.
-    [setq(5, after( before(%5, %)), %()))]    // The value to set the stat to.
+    )]  
+    // The valid values for the stat.
+    // The value to set the stat to.
+    [setq(5, after( before(%5, %)), %()))]
     ;
     
     // is the target valid?
@@ -36,7 +42,7 @@
             strmatch(%#, owner(%q0)), 
             orflags(%#, wWZ)
         ) = {
-        @pemit %#= You do not have permission to set that stat.
+        @pemit %#= You do not have permission to set that target.
     };
 
 
@@ -44,6 +50,11 @@
     @assert hasattr(%q0, _bio.template) = {
         @pemit %#= [moniker(%q0)] does not have a template set.;
         @pemit %#= To set a template, use %ch+template <target>/<template>%cn;
+    };
+
+    //is it a specalty?
+    @assert not(member(%2, specialty, /)) = {
+        @trigger me/trig.specialty =  %q0, %q3, edit(%6,%b,_);
     };
 
     // If chargen is guided, do they have points set?
@@ -64,7 +75,7 @@
             u(%va/lock.%q2, %q0),
             1
         ) = {
-            @pemit %#= You do not have permission to set that stat.
+            @pemit %#= [u(%vb/fn.error, %q2)]
         };
 
     // check if the stat is locked.  If it is, and the setter is an admin, set
@@ -72,10 +83,10 @@
     @assert  
         if(
             hasattr(%va,lock.%q3),
-            u(%va/lock.%q3, %q0),
+            u(%va/lock.%q3, %#),
             1
         ) = {
-            @pemit %#= You do not have permission to set that stat.
+            @pemit %#= [u(%vb/fn.error, %q3)]
         };
 
     @assert not(member(%2, force, /)) = {
@@ -171,12 +182,39 @@
         };
     };
 
-    @trigger  %va/trig.%q2 = %q0, %q7, %q8;
-    @trigger  %va/trig.[edit(%q7,%b,_)] = %q0, %q7, %q8;
+    @wait 0= @trigger  %va/trig.%q2 = %q0, %q7, %q8;
+    @wait 0= @trigger  %va/trig.[edit(%q7,%b,_)] = %q0, %q7, %q8;
     
 
 @set [v(cco)]/cmd.set = reg
 
+/*
+=============================================================================
+===== trig.specialty =========================================================
+    This trigger sets a specialty on a character's ability.
+
+    registers
+    ---------
+    %0 - The target to set the stat on.
+    %1 - The stat name.
+    %2 - The specialty to set.
+=============================================================================
+*/
+&trig.specialty [v(cco)] = 
+    @if isnum(getstat(%0, %1)),  = {
+        &_[%1].[%2] %0 = 1;
+        &_[%1].[%2].TEMP %0 = 1;
+        @pemit %0= You have added a specialty to your %ch[capstr(edit(%2,_,%b))]%cn ability.;
+    }, {
+        @if and( isnum(getstat(%1, %2)), not(words(%3))) = {
+            &_%1.%2 %0 =;
+            &_%1.%2.TEMP %0 =;
+            @pemit %0= You have removed the specialty from your %ch[capstr(edit(%2,_,%b))]%cn ability.;
+        }, {
+            @pemit %0= You musy have a value in that ability first.;
+        };
+
+    };
 
 /*
 =============================================================================
@@ -192,6 +230,10 @@
 &cmd.template [v(cco)] = $[\+@]?temp[late]+\s+((.*)/)?(.*)?:
 
     [setq(0, if(%2, if( strmatch(lcstr(%2), me), %#, *%2), %#))];
+
+    @assert hasattr(%#, __accept) = {
+        @pemit %#= You must accept the terms of service before you can set your template.;
+    };
 
     @assert not(hasattr(%q0, _bio.template)) = {
         @pemit %#= [moniker(%q0)]'s template is slready set.;
@@ -244,11 +286,11 @@
     This command confirms a reset of a character's stats.
 
     USAGE:
-        +confirm <target>=1
+        +reset/confirm <target>=1
 =============================================================================
 */
 
-&cmd.confirm [v(cco)] = $\+confirm\s*(.*)\s*=\s*1:
+&cmd.confirm [v(cco)] = $\+reset\/confirm\s*(.*)\s*=\s*1:
     [setq(0, if(%1, if( strmatch(lcstr(%1), me), %#, *%1), %#))];
 
     @assert isdbref(num(%q0)) = {
@@ -305,3 +347,6 @@
 
 @set [v(cco)]/cmd.sheet = reg
 
+
+&cmd.stats/list [v(cco)] = $[\+@]+stats\/list\s*((.*)\/)?(.*):
+    [setq(0, )]

@@ -1,8 +1,8 @@
 @Startup [v(cfo)]=
     @dolist lattr( %!/ufunc.* )=
-        @function/preserve [rest( ##, . )]=%!/##;
+        {@function/preserve [rest( ##, . )]=%!/##};
     @dolist lattr( %!/ufunc/privileged.* )=
-        @function/preserve/privileged [rest( ##, . )]=%!/##
+        {@function/preserve/privileged [rest( ##, . )]=%!/##}
 
 /*
 =============================================================================
@@ -18,8 +18,17 @@
 =============================================================================
 */
 
-&fn.setstat [v(cfo)] = [set(%0. [statname(%0, %1)]: %2 )]
-&ufunc.setstat [v(cfo)] = ulocal(#16/fn.setstat, %0, %1, %2)
+&fn.setstat [v(cfo)] = 
+    [set(
+        %0, 
+        _[after(edit(statname(%0, %1),%b,_),.)]:%2 
+    )]
+    [set(
+        %0, 
+        _[after(edit(statname(%0, %1),%b,_),.)].temp:%2 
+    )]
+
+&ufunc.setstat [v(cfo)] = ulocal(#80/fn.setstat, %0, %1, %2)
     
 /*
 =============================================================================
@@ -50,14 +59,14 @@
             )
         )]
         [if(
-        get(%0/%q3),
-            get(%0/%q3),
-            %q4
+        get(%0/_%q1.%q2),
+            get(%0/_%q1.%q2),
+            if(strmatch(%1,~*), 1, %q4)
         )]
         
     )
 
-&ufunc.getstat [v(cfo)] = ulocal(#16/fn.getstat, %0, %1)
+&ufunc.getstat [v(cfo)] = ulocal(#80/fn.getstat, %0, %1)
 
 
 /*
@@ -75,7 +84,7 @@
 
 &fn.gettempstat [v(cfo)] = 
     trim(
-        [setq(0, statname(%0, %1))] // Get the name and attribute string.
+        [setq(0, statname(%0, edit(%1,_,%b)))] // Get the name and attribute string.
         [setq(1, extract(%q0, 2, 1, .))] // The attribute string.
         [setq(2, extract(%q0, 3, 1, .))] // The stat name.
         [setq(3, first(filter( filter.not-temp, lattr(%0/*[edit(%1,%b,_)]*) )))]
@@ -91,13 +100,13 @@
         )]
 
         [if(
-        get(%0/%q3),
-            get(%0/%q3),
-            %q4
+        get(%0/_[%q1].[%q2].temp),
+            get(%0/_%q1.%q2.temp),
+            if(strmatch(%1,~*), 1, %q4)
         )]
     )
 
-&ufunc.gettempstat [v(cfo)] = ulocal(#16/fn.gettempstat, %0, %1)
+&ufunc.gettempstat [v(cfo)] = ulocal(#80/fn.gettempstat, %0, %1)
 
 
 /*
@@ -113,6 +122,9 @@
     
     example u(fn.statname, *kumakun, str) - "LIST.ATTRIBUTES~strength"
 
+    You're totally going to have to turn your function_invocation_limit 
+    waaaaay the hell up for this one.
+
 =============================================================================
 */
 
@@ -123,23 +135,23 @@
                 lattr(%va/LIST.* ),
                 if( 
                     words(
-                        setr( 0, 
+                        setr( z, 
                             grab(   
                                 
                                 get(%va/list.[after(##,.)]) , %1*, |
                             )
                         )
                     ),
-                    ##.[edit(%q0,%b,_)]
+                    ##.[edit(%qz,%b,_)]
                 )
             )
-        )]
-        [first(iter( %q0,  if(u(fn.checkfulllock, %0, ##), ## )))]
+        )] 
+        [first( %q0)]
    
     
 
 // tutn it into a golbal.
-&ufunc.statname [v(cfo)] = ulocal(#16/fn.statname, %0, %1)
+&ufunc.statname [v(cfo)] = ulocal(#80/fn.statname, %0, %1)
 
 /*
 =============================================================================
@@ -183,7 +195,35 @@
         )
     )]
     [and(%qa, %qb)]
-    
+
+
+&fn.error [v(cfo)] = 
+    [trim(
+        [setq(0, extract(%1, 2, 1, .))] // The attribute string.
+        [setq(1, extract(%1, 3, 1, .))] // The stat name.   
+    )]
+    [setq(a,
+        if(
+            hasattr(%va, error.%q0),
+            u(%va/error.%q0, %0)
+        )
+    )]
+    [setq(b,
+        if(
+            hasattr(%va, error.%q1),
+            u(%va/lock.%q1, %0)
+        )
+    )]
+    [if(
+        words(%qa),
+        %qa,
+        if(
+            words(%qb),
+            %qb,
+            You can't set that.
+        )
+    )]
+
 
 /*
 ##########################################################################
@@ -203,8 +243,10 @@
 &filter.exists [v(cfo)] = u(fn.exists, %0)  
 
 
-&fn.header [v(cfo)] = [center( %0, if(%1, %1,width(%#)), if(%2, %2, =))]
-&ufunc.header [v(cfo)] = u(#16/fn.header, %0, %1, %2)
+&fn.header [v(cfo)] = if(words(%0), [center( %b%0%b, if(%1, %1,width(%#)), if(%2, %2, =))], repeat(=, if(%1, %1, width(%#))))
+&ufunc.header [v(cfo)] = u(#80/fn.header, %0, %1, %2)
+&ufunc.wheader [v(cfo)] = u(#80/fn.header, %0, %1, %2)
+&ufunc.wfooter [v(cfo)] = u(#80/fn.header, %0, %1, %2)
 
 
 &filter.success [v(cfo)] = gte(%0, %1)
@@ -227,49 +269,116 @@
 */
 
 &fn.3cols [v(cfo)] = 
-    [trim(
-        [setq(0, sub(div(width(%#),3),3))] // the width tof the first and third cols.
-        // (width - (col * 2)) - 4
-        [setq(1, sub(sub(width(%#), mul(%q0,2)), 6)  )] // the width of the second col.
-        
-    )]
+    [setq(0, sub(div(width(%#),3),3))] // the width tof the first and third cols.
+    // (width - (col * 2)) - 4
+    [setq(1, sub(sub(width(%#), mul(%q0,2)), 6)  )] // the width of the second col.   
     [if(
         %4,
-        %b[header(%b%cy[extract(%4,1,1,|)]%cn%b, %q0, %cr-%cn)]%b
+        %r%b[header(%b%cy[extract(%4,1,1,|)]%cn%b, %q0, %cr-%cn)]%b
         %b[header(%b%cy[extract(%4,2,1,|)]%cn%b, %q1, %cr-%cn)]%b
         %b[header(%b%cy[extract(%4,3,1,|)]%cn%b, %q0, %cr-%cn)]%b
     )]
-
+    [if(
+        not(words(%5)),
+        [setq( 3,
+        squish(iter( %1,
+                ##[iter(
+                    filter( filter.temp, lattr(%0/_[edit(##,%b,_)].*)),
+                    |[itext(0)],,|
+                )], |, |
+            ),|)
+        )]
+        [setq( 4,
+            squish(iter( %2,
+                ##[iter(
+                    filter( filter.temp, lattr(%0/_[edit(##,%b,_)].*)),
+                    |[itext(0)],,|
+                )], |, |
+            ),|)
+        )]
+        [setq( 5,
+            squish(iter( %3,
+                ##[iter(
+                    filter( filter.temp, lattr(%0/_[edit(##,%b,_)].*)),
+                    |[itext(0)],,|
+                )], |, |
+            ),|)
+        )],
+        [setq(3,
+            iter(
+                lnum(1,words(%1,|),,3), 
+                extract(%1, ##, 1, |),,|
+            )
+        )]
+        [setq(4,
+            iter(
+                lnum(2,words(%1,|),,3), 
+                extract(%1, ##, 1, |),,|
+            )
+        )]
+        [setq(5,
+            iter(
+                lnum(3,words(%1,|),,3), 
+                extract(%1, ##, 1, |),,|
+            )
+        )]
+      
+    )]
 
     // check each tp see if there are any sub-stats that need to be added to the list.
-    [setq( 3,
-        iter( %1,
-            ##[iter(
-                filter( filter.temp, lattr(%0/_[edit(##,%b,_)].*)),
-                 |[itext(0)],,|
-            )], |, |
-        )
-    )]
-    [setq( 4,
-        iter( %2,
-            ##[iter(
-                filter( filter.temp, lattr(%0/_[edit(##,%b,_)].*)),
-                 |[itext(0)],,|
-            )], |, |
-        )
-    )]
-    [setq( 5,
-        iter( %3,
-            ##[iter(
-                filter( filter.temp, lattr(%0/_[edit(##,%b,_)].*)),
-                 |[itext(0)],,|
-            )], |, |
-        )
-    )]
+    [if(
+        not(words(%5)),
+        [setq( 3,
+            squish(iter( %1,
+                ##[iter(
+                    filter( filter.temp, lattr(%0/_[edit(##,%b,_)].*)),
+                    |[itext(0)],,|
+                )], |, |
+            ),|)
+        )]
+        [setq( 4,
+            squish(iter( %2,
+                ##[iter(
+                    filter( filter.temp, lattr(%0/_[edit(##,%b,_)].*)),
+                    |[itext(0)],,|
+                )], |, |
+            ),|)
+        )]
+        [setq( 5,
+            squish(iter( %3,
+                ##[iter(
+                    filter( filter.temp, lattr(%0/_[edit(##,%b,_)].*)),
+                    |[itext(0)],,|
+                )], |, |
+            ),|)
+        )],
 
-
-    [setq(2, max(words(%q3,|), words(%2,|), words(%3,|)))]
-
+        [setq( 3,
+            squish(iter( %q3,
+                ##[iter(
+                    filter( filter.temp, lattr(%0/_[edit(##,%b,_)].*)),
+                    |[itext(0)],,|
+                )], |, |
+            ),|)
+        )]
+        [setq( 4,
+            squish(iter( %q4,
+                ##[iter(
+                    filter( filter.temp, lattr(%0/_[edit(##,%b,_)].*)),
+                    |[itext(0)],,|
+                )], |, |
+            ),|)
+        )]
+        [setq( 5,
+            squish(iter( %q5,
+                ##[iter(
+                    filter( filter.temp, lattr(%0/_[edit(##,%b,_)].*)),
+                    |[itext(0)],,|
+                )], |, |
+            ),|)
+        )]
+    )]
+    [setq(2, max(words(%q3,|), words(%q4,|), words(%q5,|)))]    
     [iter(
         lnum(1, %q2),
         %r[if(
@@ -310,22 +419,47 @@
         [iter(%1, 
             if(
                 strmatch(##, _*),
-                [space(5)][capstr(lcstr(after(##,.)))],
-                if(getstat(%0, %1),
+               %cy`[capstr(lcstr(edit(after(##,.),_,%b)))],
+                if(
+                    or(
+                        and(
+                            words(statname(%0, edit(%1,_,%b))),
+                            if(
+                                isnum(getstat(%0, edit(%1, _, %b))),
+                                gt(getstat(%0, edit(%1, _, %b)),0),
+                                words(getstat(%0, edit(%1,_,%b)))
+                            )
+                        )
+                    ),
                     %ch[capstr(edit(##,_,%b))]%cn,
                     ansi(hx,[capstr(edit(##,_,%b))])
                 )
             )
         )],
         // was a width provided?
-        sub(if(%2, %2, 26), strlen(u(fn.getfullstat,%0,edit(%1,_,%b)))), 
+        sub(if(%2, %2, 26), strlen(
+            [if(
+        getstat(%0, %1),
+        [u(fn.getfullstat, %0, edit(%1,_,%b))],
+        if(
+            words(statname(%0, %1)),
+            ansi(hx,[u(fn.getfullstat, %0, edit(%1,_,%b))]),
+            1
+        )
+    )]
+
+        )), 
         // filler     
         if(%3, %3, %ch%cx.%cn)
     )]
     [if(
         getstat(%0, %1),
         [u(fn.getfullstat, %0, edit(%1,_,%b))],
-        ansi(hx,[u(fn.getfullstat, %0, edit(%1,_,%b))])
+        if(
+            words(statname(%0, %1)),
+            ansi(hx,[u(fn.getfullstat, %0, edit(%1,_,%b))]),
+            1
+        )
     )]
 
 
@@ -360,15 +494,21 @@
 
 
 &fn.listcategory [v(cfo)] = 
-    [setq(0, 
-        iter(
-            lattr(%va/list.%1*),
-            if(
-                u(fn.checkfulllock, %0, ##), ##
+    [trim(
+        [setq(0, 
+            iter(
+                lattr(%va/list.%1*),
+                if(
+                    u(fn.checkfulllock, %0, ##), ##
+                )
             )
-        )
+        )]
+        [setq(1,)]
     )]
-    [iter(%q0, [ulocal(fn.filter.lock, %0,  u(fn.combine, %q0) )],|,|)]
+    // [iter([iter(%q0, [ulocal(fn.filter.lock, %0,  u(fn.combine, %q0) )],|,|)], setq(1, setunion(%q1, ##, |,|)),|)]
+    [iter([iter(%q0,  u(fn.combine, %q0),|,|)], setq(1, setunion(%q1, ##, |,|)),|)]
+    %q1
+    
 
 
 /*
@@ -405,12 +545,12 @@
 =============================================================================
 */
 &fn.sheet.attributes [v(cfo)] = 
-    [[header(%cr%[%b%cyAttributes%cn%cr%b%]%cn,,%cr=%cn)]]%r
+    [[header(%cr%[%b%cyAttributes%cn%cr%b%]%cn,,%cr=%cn)]]
     [u(  fn.3cols, 
         %0,
         strength|dexterity|stamina,
-        charisma|manipulation|appearance,
-        perception|intelligence|wits,
+        charisma|manipulation|composure,
+        intelligence|wits|resolve,
         Pyhsical|Social|Mental 
     )]
 
@@ -427,20 +567,38 @@
 */
 
 &fn.sheet.abilities [v(cfo)] = 
-    [trim(
-        [setq(0, sub(div(width(%#),3),3))] // the width tof the first and third cols.
-        // (width - (col * 2)) - 4
-        [setq(1, sub(sub(width(%#), mul(%q0,2)), 6)   )] // the width of the second col.
-        [setq(2, max(words(%1,|), words(%2,|), words(%3,|)))]
-    )]
-
-    [header(%cr%[%b%cyAbilities%cn%cr%b%]%cn,,%cr=%cn)]%r
+    [header(%cr%[%b%cyAbilities%cn%cr%b%]%cn,,%cr=%cn)]
     [u( fn.3cols, 
         %0,
-        u(fn.listcategory, %0, TALENTS),
-        u(fn.listcategory, %0, SKILLS),
-        u(fn.listcategory, %0, KNOWLEDGES),
-        Talents|Skills|Knowledges
+        athletics|
+        brawl|
+        craft|
+        drive|
+        firearms|
+        larceny|
+        melee|
+        stealth|
+        survival, 
+        
+        animal ken|
+        etiquette|
+        insight|
+        intimidation|
+        leadership|
+        performance|
+        persuasion|
+        streetwise|
+        subterfuge, 
+        
+        academics|
+        awareness|
+        finance|
+        investigation|
+        medicine|
+        occult|
+        politics|
+        science|
+        technology
     )]
 
 
@@ -477,11 +635,11 @@
             after(lcstr(##),.),,|
         )
     )]
-    [header(%cr%[%b%cyAdvantages%cn%cr%b%]%cn,,%cr=%cn)]%r
+    [header(%cr%[%b%cyAdvantages%cn%cr%b%]%cn,,%cr=%cn)]
     
     [u( fn.3cols, 
         %0,
-        %q0, %q1,%q2,
+        sort(%q0,,|), sort(%q1,,|), sort(%q2,,|),
         Backgrounds|Merits|Flaws
     )]
 
@@ -517,6 +675,33 @@
         Gifts|Rites|Renown
     )]
 
+
+/*
+=============================================================================
+===== FN.SHEET.POWERS.VAMPIRE ===============================================
+
+    This function returns the vampire powers of a character.
+
+    %0 - The character to get the powers from.
+
+=============================================================================
+*/
+
+
+&fn.sheet.powers.vampire [v(cfo)] = 
+    [setq(0,
+        sort(
+            iter(
+                filter( filter.temp, lattr(%0/_DISCIPLINES*)),
+                after(lcstr(##),.),,|
+            ),a,|,|
+        )
+        
+    )]
+
+    [header(%cr%[%b%cyDisciplines%cn%cr%b%]%cn,,%cr=%cn)]
+    [u( fn.3cols, %0,%q0,,,,1)]
+
 /*
 =============================================================================
 ===== FN.SHEET.POOLS ========================================================
@@ -532,15 +717,12 @@
 &fn.sheet.pools [v(cfo)] =
     [setq(0,
         iter(
-             filter( filter.temp, lattr(%0/_POOLS.*)),
+             filter( filter.temp, lattr(%0/_POOLS*)),
             after(lcstr(##),.),,|
         )
     )]
     [header(%cr%[%b%cyPools%cn%cr%b%]%cn,,%cr=%cn)]
-    [u( fn.3cols, 
-        %0,
-        ,%q0,
-    )]
+    [u( fn.3cols, %0,%q0,,,,1)]
 
 /*
 =============================================================================
@@ -559,8 +741,9 @@
     [ulocal(fn.sheet.attributes, %0)]%r
     [ulocal(fn.sheet.abilities, %0)]%r
     [if( or( words(lattr(%0/_BACKGROUNDS*)), words(lattr(%0/_MERITS*)),words(lattr(%0/_FLAWS*))), [ulocal(fn.sheet.advantages, %0)]%r,)]
+    [if( words(lattr(%0/_DISCIPLINES*)), [u(fn.sheet.powers.vampire, %0)]%r,)]
     [if( or(words(lattr(%0/_GIFTS*)),words(lattr(%0/_RITES*)), getstat(%0, glory), getstat(%0, honor), getstat(%o, wisdom)), [ulocal(fn.sheet.powers.werewolf, %0)]%r,)]
-    [u(fn.sheet.pools, %0)]%r
+    [if( words(lattr(%0/_POOLS*)), [ulocal(fn.sheet.pools, %0)]%r,)]
     [repeat(%cr=%cn, width(%#))]
     [if(
         not( hasattr(%0, _approved) ),
@@ -591,4 +774,4 @@
         %ch%cx[singletime(%0)]%cn
     )
 
-&ufunc/privileged.idlecolor [v(cfo)] = u(#16/fn.idlecolor, %0)
+&ufunc/privileged.idlecolor [v(cfo)] = u(#80/fn.idlecolor, %0)

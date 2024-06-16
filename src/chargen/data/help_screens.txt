@@ -1,27 +1,22 @@
+This is just a simple primer for using the character generation commands.  There aren't very many, so I'll cover the here.  You can use these commands anywhere, not just in here.
+
+%ch%cySetting stuff%cn
+
+    %ch%cr*%cn To set most things in cargen, type '%ch+stat <stat>=[+/-]<value>%cn'.%cn
+    %ch%cr*%cn To set a skill specialty, type '%ch+stat/specialty <ability>=<specialty>%cn'.%cn
+
+%ch%cyViewing stuff%cn
+
+    %ch%cr*%cn To see your progres, type '%ch+sheet'.
+    %ch%cr*%cn To search for a stat, type '%ch+stat/list <category>%cn'
 
 
+%ch%cyOther useful things%cn
 
+    %ch%cr*%cn To set a character note, see '%ch+help +note'.
+    %ch%cr*%cn When you're all done type '%ch+approveme'. 
 
+%ch%cyStaff%cn
 
-CHARGEN TLDR;
--------------
-
-Setting stuff
-
-    * To set most things in cargen, type '+stat <stat>=<value>'.
-    * To set a skill specialty, type '+stat/specialty <ability>=<specialty>'.
-
-
-Viewing stuff
-
-    * To see your progres, type '+sheet'.
-    * To search for a stat, type '+stat/search <partial name>'
-
-
-Other useful things
-
-    * To set a character note, see '+help +cnote'.
-    * To set Your background, see '+help +background'.
-
-
-
+    %ch%cr*%cn +stat[/temp] <target>/<stat>=<value>
+    %ch%cr*%cn To approve a character, '%ch+approve <name>%cn'.

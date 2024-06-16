@@ -107,7 +107,14 @@
 &lock.title [v(cdo)] = u( .is, %0, changeling )
 &lock.treasure [v(cdo)] = u( .is, %0, changeling )
 
-&list.arts_changeling [v(cdo)]
+&list.pools_changeling [v(cdo)] =
+    glamour|
+    banality
+
+&values.pools_changeling [v(cdo)] = 1|2|3|4|5|6|7|8|9|10
+&lock.pools_changeling [v(cdo)] = u( .is, %0, changeling )
+
+&list.arts_changeling [v(cdo)]=
     autumn|
     chicanery|
     chronos|
@@ -128,11 +135,11 @@
     wayfare|
     winter
 
-&lock.arts_changeling [v(cdo)]
+&lock.arts_changeling [v(cdo)]=
 
 &values.arts_changeling [v(cdo)] = 1|2|3|4|5
 
-&list.realms_changeling [v(cdo)]
+&list.realms_changeling [v(cdo)]=
     actor|
     fae|
     nature|
@@ -333,7 +340,7 @@
 &values.regeneration [v(cdo)] = 7
 &lock.regeneration [v(cdo)] = u(.is, %0, changeling)
 
-&list.flaws_changeling [v(cdo)]
+&list.flaws_changeling [v(cdo)]=
     addiction|
     allergic|
     asthma|

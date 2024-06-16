@@ -60,13 +60,14 @@
 &default.talents_garou [v(cdo)] = 0
 &values.talents_garou [v(cdo)] = 1|2|3|4|5
 
-&list.KNOWLEDGES_garou [v(cdo)] =
-    academics
+&list.knowledges_garou [v(cdo)] =
+    academics|
+    enigmas
 
 
-&lock.KNOWLEDGES_garou [v(cdo)] = u(.is, %0, garou)
-&default.KNOWLEDGES_garou [v(cdo)] = 0
-&values.KNOWLEDGES_garou [v(cdo)] = 1|2|3|4|5
+&lock.knowledges_garou [v(cdo)] = u(.is, %0, garou)
+&default.knowledges_garou [v(cdo)] = 0
+&values.knowledges_garou [v(cdo)] = 1|2|3|4|5
 
 
 &list.gifts [v(cdo)] =

@@ -92,7 +92,6 @@
 
 &list.knowledges [v(cdo)] =
     computer|
-    enigmas|
     finance|
     investigation|
     law|

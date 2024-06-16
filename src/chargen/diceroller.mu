@@ -5,8 +5,16 @@
 
     %0 - The character to roll for.
     %1 - The stats to roll.
-    %2 - The difficulty of the roll.
+    %2 - hunger dice.
     %3 - Whether or not the roll is permanent.
+
+    %q0 - The edited stats
+    %q1 - The sum of the stats.
+    %q2 - The sorted dice results.
+    %q3 - The colored dice results.
+    %q4 - The successes.
+    %q5 - The edited stat names.
+    %q6 - The botches.
 
     returns - The results of the roll.
 =============================================================================
@@ -14,8 +22,8 @@
 
 &fn.roll [v(cfo)] = 
     trim(
-        [setq(8, if(%2, trim(%2), 6))]
-        [setq(0, edit( edit(%1, +, %b+%b), -, %b-%b))]
+        
+        [setq(0, edit( edit(%1, +, %b+), -, %b-))]
         [setq(1, 
             ladd(
                 iter(
@@ -24,18 +32,39 @@
                 )
             )
         )]
-        [setq(2, revwords( sort(iter( lnum(%q1), die(1,10) ))))]
+        // Subtract hunger dice
+        [setq(2, revwords( sort(iter( lnum(sub(%q1, %2)), die(1,10) ))))]
+        // roll  hunger dice
+        [setq(8, 
+            revwords( sort(
+                iter( 
+                    if(gte(%q1, %2), %2, %q1),
+                    die(1, 10) 
+                )
+            ))
+        )]
         [setq(
             3, 
             iter(%q2, 
                 switch( 1,
-                    gte(##, %q8), %ch%cg[##]%cn,
-                    eq(##, 1),   %ch%cr[##]%cn,
+                    gte(##, 6), %ch%cg[##]%cn,                    
                     %ch%cy[##]%cn
                 )
             )    
         )]
-        [setq(4, words(iter(%q2, if(gte(##,%q8), ##))))]
+        // color hunger dice
+        [setq(h,
+            iter( %q8, 
+                switch( 1,
+                    eq(##, 10), %ch%cr[##]%cn,
+                    gte(##, 6), %ch%cg[##]%cn,
+                     eq(##, 1), %cr[##]%cn,
+                    %ch%cy[##]%cn
+                )
+            )    
+        )]
+
+        [setq(4, words(iter(%q2 %q8, if(gte(##,6), ##))))]
         [setq(5, 
             iter(%q0, 
                 if(
@@ -46,23 +75,46 @@
             )
         )]
         [setq(6, words(iter(%q2, if(eq(##,1), ##))))]
-        [setq(7, sub(%q4, %q6))]
+           
+        // first we figure out the number of 10s (criticals). %c
+        [setq(
+            c,
+            ladd(
+                iter(
+                    %q2 %q8, 
+                    if(eq(##, 10), 1)
+                )
+            )
+        )]
+
+        // successes %qs minus criticals
+        [setq(s, %q4)]
+        [setq(e, div(%qc, 2))]
+        // total.
+        [setq(t, 
+            if(
+                %qe,
+                add(%qs, mul(%qe, 2)),
+                %qs
+            )
         
-        %chROLL[if(%3,/PERM)]>>%cn [moniker(%#)] rolls %q5 vs %ch[%q8]%cn => 
+        )]
+        
+        %crROLL[if(%3,/PERM)]>%cn [moniker(%#)] rolls [squish(edit(edit(%q5, -, %b-%b), +, %b+%b))]  => 
         %(
             [switch(1,
-                eq(%q7, 0), %ch%cy0%cn,
-                lt(%q7, 0), %ch%cr%q7%cn,
-                %ch%cg%q7%cn 
+                eq(%qt, 0), %ch%cy0%cn,
+                lt(%qt, 0), %ch%cr%qt%cn,
+                %ch%cg%qt%cn 
             )]
             
         %) 
-            [switch(1,
-                eq(%q7,1), success,
-                gt(%q7,1), successes,
-                eq(%q7,0), successes %(%ch%cyfailure%cn%),
-                successes %(%ch%crbotch%cn%)
-            )] %(%q3%)
+        [switch(1,
+            eq(%qt,1), success,
+            gt(%qt,1), successes,
+            eq(%qt,0), successes %(%ch%cyfailure%cn%),
+            successes %(%ch%crbotch%cn%) 
+        )] %([sort(%q3 %qh)]%) 
     )
 
 /*
@@ -77,9 +129,12 @@
 */
 
 &cmd.roll [v(cco)] = $[\+@]?roll(\/perm)?\s+(.*):
-    [setq(0, before(%2, vs))]
-    [setq(1, after(%2, vs))];
-    @pemit %#= ulocal(%vb/fn.roll, %#, %q0, %q1, %1);
+
+    @assert hasattr(%#, __accept) = {
+        @pemit %#=You must accept the terms of service before you can roll.
+    };
+
+    @remit loc(%#) = ulocal(%vb/fn.roll, %#, %2, getstat(%#, hunger), %1);
 @set [v(cco)]/cmd.roll = reg
 
 
